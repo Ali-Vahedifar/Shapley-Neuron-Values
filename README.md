@@ -27,7 +27,7 @@ No replay buffer. No extra parameters. No task labels at test time (in the Class
   <img src="Shapley Conceptual.png" alt="SNV conceptual overview — neurons are valued using Shapley values, important ones are frozen, and remaining capacity stays plastic for future tasks." width="85%"/>
 </p>
 <p align="center"><em>
-  <b>Figure 1.</b> SNV overview. After training on each task, Shapley values quantify every neuron's contribution. The most important neurons (dark) are frozen to lock in knowledge; the rest (light) remain available for future tasks. The result is zero forgetting by construction.
+  <b>Figure 1.</b> SNV overview. After training on each task, Shapley values quantify every neuron's contribution. The most important neurons in each task are frozen to lock in knowledge; the rest remain available for future tasks. The result is zero forgetting by construction.
 </em></p>
 ---
 

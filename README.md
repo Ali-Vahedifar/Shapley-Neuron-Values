@@ -99,6 +99,3 @@ snv-continual-learning/
 
 Released under the [MIT License](LICENSE).
 
-## Acknowledgments
-
-This work builds on ideas from cooperative game theory (Shapley, 1953) and the Lottery Ticket Hypothesis (Frankle & Carlin, 2019). We thank the reviewers for their constructive feedback during the review process.

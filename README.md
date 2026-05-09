@@ -40,7 +40,7 @@ No replay buffer. No extra parameters. No task labels at test time (in the Class
 5. **Freeze** those neurons by updating the cumulative mask: *B_t = B_{t-1} ∪ S_t*
 6. **Repeat** for the next task
 
-The Shapley estimation is the expensive part — but with truncation (skip evaluations when the model is basically non-functional) and MAB (stop sampling neurons whose importance is already confidently resolved), the overhead is only ~1.24× NFL+'s cost.
+The Shapley estimation is the expensive part — but with truncation (skip evaluations when the model is basically non-functional) and MAB (stop sampling neurons whose importance is already confidently resolved).
 
 ---
 

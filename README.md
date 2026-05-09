@@ -22,11 +22,6 @@ We asked a different question: *what if the model already has everything it need
 
 No replay buffer. No extra parameters. No task labels at test time (in the Class-IL setting). Just a smarter way of deciding what to protect.
 
-<!-- ============================================================ -->
-<!-- CONCEPTUAL FIGURE                                             -->
-<!-- Replace the placeholder below with your actual figure.        -->
-<!-- Recommended: a PNG or SVG at ~1200px wide for crisp rendering -->
-<!-- ============================================================ -->
 
 <p align="center">
   <img src="figures/snv_conceptual.png" alt="SNV conceptual overview — neurons are valued using Shapley values, important ones are frozen, and remaining capacity stays plastic for future tasks." width="85%"/>
@@ -35,11 +30,6 @@ No replay buffer. No extra parameters. No task labels at test time (in the Class
   <b>Figure 1.</b> SNV overview. After training on each task, Shapley values quantify every neuron's contribution. The most important neurons (dark) are frozen to lock in knowledge; the rest (light) remain available for future tasks. The result is zero forgetting by construction.
 </em></p>
 
-<!-- To add your figure:
-     1. Place your image in a `figures/` directory at the repo root
-     2. Update the `src` path above
-     3. Adjust width as needed (85% works well for wide diagrams)
--->
 
 ---
 
@@ -216,42 +206,13 @@ snv-continual-learning/
 
 ---
 
-## Experimental Setup
-
-| | Permuted MNIST | CIFAR-100 | TinyImageNet |
-|---|---|---|---|
-| Architecture | 4-layer MLP (200 hidden) | ResNet-18 | ResNet-18 |
-| Input size | 784 (flattened) | 32 × 32 × 3 | 64 × 64 × 3 |
-| Tasks | 10 | 10 / 20 | 10 / 20 |
-| Batch size | 10 | 64 | 64 |
-| Epochs | 20 | 200 (early stopping) | 200 (early stopping) |
-| Optimizer | Adam | Adam | Adam |
-| Initialization | He (Kaiming) | He (Kaiming) | He (Kaiming) |
-| Data split | 70 / 10 / 20 (train / val / test) | same | same |
-| Runs | 10 | 10 | 10 |
-| Hardware | Single NVIDIA A6000 | same | same |
-
----
-
-## Metrics
-
-| Metric | What it measures | Ideal value |
-|---|---|---|
-| **ACC** | Average accuracy across all tasks after final training | Higher is better |
-| **BWT** | Backward transfer — how much old tasks degrade | 0.0 (no forgetting) |
-| **FWT** | Forward transfer — do earlier tasks help later ones? | Higher is better |
-| **PS** | Plasticity–stability ratio | Higher is better |
-| **AF** | Average forgetting (worst-case per task) | 0.0 |
-| **CAP** | Fraction of neurons used across all tasks | Lower = more efficient |
-
----
 
 ## Citation
 
 ```bibtex
 @inproceedings{snv2026icml,
   title     = {Shapley Neuron Values for Continual Learning: Which Neurons Matter Most?},
-  author    = {[Author names]},
+  author    = {Mohammad Ali Vahedifar, Abhisek Ray, Qi Zhang},
   booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},
   year      = {2026}
 }

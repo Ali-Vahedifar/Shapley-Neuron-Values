@@ -42,20 +42,7 @@ No replay buffer. No extra parameters. No task labels at test time (in the Class
 
 The Shapley estimation is the expensive part — but with truncation (skip evaluations when the model is basically non-functional) and MAB (stop sampling neurons whose importance is already confidently resolved).
 
----
 
-## Installation
-
-```bash
-git clone https://github.com/<your-username>/snv-continual-learning.git
-cd snv-continual-learning
-
-# Create environment
-python -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
 ```
 
 **Requirements:** Python 3.8+, PyTorch ≥ 1.12, torchvision, numpy, scipy, matplotlib, tqdm.

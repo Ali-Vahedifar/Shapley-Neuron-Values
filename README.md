@@ -43,7 +43,6 @@ No replay buffer. No extra parameters. No task labels at test time (in the Class
 The Shapley estimation is the expensive part — but with truncation (skip evaluations when the model is basically non-functional) and MAB (stop sampling neurons whose importance is already confidently resolved).
 
 
-```
 
 **Requirements:** Python 3.8+, PyTorch ≥ 1.12, torchvision, numpy, scipy, matplotlib, tqdm.
 

@@ -1,5 +1,5 @@
 # Shapley Neuron Valuation for Continual Learning
-### *Which Neurons Matter Most?*
+## *Which Neurons Matter Most?*
 
 **Accepted at ICML 2026** 🎉
 

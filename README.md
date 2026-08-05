@@ -3,11 +3,6 @@
 
 **Accepted at ICML 2026** 🎉
 
-[![Paper](https://img.shields.io/badge/Paper-ICML%202026-blue)](https://arxiv.org/abs/XXXX.XXXXX)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-yellow.svg)](https://www.python.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-1.12%2B-ee4c2c.svg)](https://pytorch.org/)
-
 ---
 
 ## The Problem
@@ -79,9 +74,4 @@ snv-continual-learning/
 }
 ```
 
----
-
-## License
-
-Released under the [MIT License](LICENSE).
 

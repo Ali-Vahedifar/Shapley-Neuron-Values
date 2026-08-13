@@ -1,73 +1,71 @@
 """
-Shapley Neuron Valuation (SNV) for Continual Learning
+Shapley Neuron Valuation (SNV) for Continual Learning.
 
-A memory-free continual learning framework that leverages Shapley values
-from cooperative game theory to identify and protect important neurons.
+Reference implementation for
+"Shapley Neuron Values for Continual Learning: Which Neurons Matter Most?"
 
-Anonymous submission for ICML 2026.
+The modules are written to run as scripts (``python train.py ...``) as well as
+to be imported as a package, so the package directory is placed on ``sys.path``
+before the submodules are loaded and every internal import is absolute.
 """
 
-from .snv_core import (
-    NeuronMaskManager,
-    MeanActivationComputer,
-    ShapleyNeuronEstimator,
-    SNVContinualLearner
-)
+import os
+import sys
 
-from .models import (
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from snv_core import (                                              # noqa: E402
+    MeanActivationComputer,
+    NeuronGroup,
+    NeuronMaskManager,
+    SNVContinualLearner,
+    ShapleyNeuronEstimator,
+    build_neuron_index,
+)
+from models import (                                                # noqa: E402
     MLP,
-    ResNet18,
     BasicBlock,
     ContinualLearningModel,
-    create_model,
+    ResNet18,
+    count_neurons,
     count_parameters,
-    count_neurons
+    create_backbone,
+    create_model,
 )
-
-from .datasets import (
-    PermutedMNIST,
-    ContinualLearningDataset,
-    TinyImageNet,
+from datasets import (                                              # noqa: E402
     ContinualLearningBenchmark,
-    get_cifar100_transforms,
-    get_tinyimagenet_transforms
+    TinyImageNet,
+    build_transforms,
 )
-
-from .metrics import (
+from metrics import (                                               # noqa: E402
     ContinualLearningMetrics,
     compute_capacity,
-    compute_per_task_accuracies
+    compute_per_task_accuracies,
+)
+from cl_base import ContinualMethod, Reservoir                      # noqa: E402
+from baselines import (                                             # noqa: E402
+    ALL_METHODS,
+    BUFFER_FREE,
+    MEMORY_BASED,
+    build_method,
+    default_buffer_size,
+    requires_task_identity,
 )
 
-__version__ = '1.0.0'
-__author__ = 'Anonymous'
+__version__ = '2.0.0'
 
 __all__ = [
-    # Core SNV
-    'NeuronMaskManager',
-    'MeanActivationComputer', 
-    'ShapleyNeuronEstimator',
-    'SNVContinualLearner',
-    
-    # Models
-    'MLP',
-    'ResNet18',
-    'BasicBlock',
-    'ContinualLearningModel',
-    'create_model',
-    'count_parameters',
-    'count_neurons',
-    
-    # Datasets
-    'PermutedMNIST',
-    'ContinualLearningDataset',
-    'TinyImageNet',
-    'ContinualLearningBenchmark',
-    'get_cifar100_transforms',
-    'get_tinyimagenet_transforms',
-    
-    # Metrics
-    'ContinualLearningMetrics',
-    'compute_capacity',
-    'compute_per_task_accuracies'
+    # core
+    'SNVContinualLearner', 'ShapleyNeuronEstimator', 'NeuronMaskManager',
+    'MeanActivationComputer', 'NeuronGroup', 'build_neuron_index',
+    # models
+    'MLP', 'ResNet18', 'BasicBlock', 'ContinualLearningModel',
+    'create_model', 'create_backbone', 'count_parameters', 'count_neurons',
+    # data
+    'ContinualLearningBenchmark', 'TinyImageNet', 'build_transforms',
+    # metrics
+    'ContinualLearningMetrics', 'compute_capacity', 'compute_per_task_accuracies',
+    # methods
+    'ContinualMethod', 'Reservoir', 'build_method', 'default_buffer_size',
+    'requires_task_identity', 'ALL_METHODS', 'BUFFER_FREE', 'MEMORY_BASED',
 ]

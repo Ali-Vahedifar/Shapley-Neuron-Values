@@ -1,510 +1,310 @@
 """
-Dataset loaders for SNV Continual Learning experiments.
+Continual-learning benchmarks.
 
-Datasets:
-- Permuted MNIST (PMNIST): MNIST with random pixel permutations per task
-- CIFAR-100: 100 classes divided into 10 or 20 tasks
-- TinyImageNet: 200 classes divided into 10 or 20 tasks
+Datasets: Permuted MNIST, CIFAR-100, TinyImageNet, ImageNet-1k.
+Task splits: 10, 20 or 50 tasks (ImageNet-1k is the only one evaluated at 50).
 
-Data splits: 70% train, 20% test, 10% validation
+Splits follow the experimental setup: for every task the samples of that task's
+classes are pooled from the dataset's native train and test partitions and then
+re-split 70 % train / 10 % validation / 20 % test.  Re-pooling matters -- the
+native partitions are not in that ratio (TinyImageNet ships 500 train and 50
+validation images per class, i.e. 91 / 9), so slicing the native train set alone
+cannot produce the stated proportions.
 
-Anonymous submission for ICML 2026.
+Labels are remapped per scenario: cumulative global indices for CIL, task-local
+indices 0..C-1 for TIL.
 """
 
-import torch
-import numpy as np
-from torch.utils.data import Dataset, DataLoader, Subset, random_split
-from torchvision import datasets, transforms
-from typing import Tuple, List, Dict, Optional
 import os
+from typing import Dict, List, Optional, Sequence, Tuple
+
+import numpy as np
+import torch
 from PIL import Image
+from torch.utils.data import DataLoader, Dataset
+from torchvision import datasets, transforms
+
+TRAIN_FRAC, VAL_FRAC, TEST_FRAC = 0.70, 0.10, 0.20
 
 
-class PermutedMNIST(Dataset):
-    """
-    Permuted MNIST dataset for continual learning.
-    
-    Each task applies a unique deterministic permutation to input pixels.
-    """
-    
-    def __init__(
-        self,
-        root: str,
-        train: bool = True,
-        download: bool = True,
-        permutation: Optional[np.ndarray] = None
-    ):
-        self.mnist = datasets.MNIST(
-            root=root, train=train, download=download
-        )
-        self.permutation = permutation
-        
-        # Pre-compute transform
-        self.transform = transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize((0.1307,), (0.3081,))
-        ])
-        
-    def __len__(self) -> int:
-        return len(self.mnist)
-    
-    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, int]:
-        img, label = self.mnist[idx]
-        
-        # Apply transform
-        img = self.transform(img)
-        
-        # Flatten and apply permutation
-        img_flat = img.view(-1)
-        if self.permutation is not None:
-            img_flat = img_flat[self.permutation]
-        
-        return img_flat, label
+# --------------------------------------------------------------------------- #
+# Raw pools (no transform; transforms are applied by the subset wrapper)
+# --------------------------------------------------------------------------- #
+class _ConcatPool:
+    """Two raw datasets viewed as one, with a single ``targets`` array."""
+
+    def __init__(self, first, second, first_targets, second_targets):
+        self.first, self.second = first, second
+        self.offset = len(first)
+        self.targets = np.concatenate([np.asarray(first_targets), np.asarray(second_targets)])
+
+    def __len__(self):
+        return len(self.targets)
+
+    def __getitem__(self, i):
+        return self.first[i] if i < self.offset else self.second[i - self.offset]
 
 
-class ContinualLearningDataset(Dataset):
-    """
-    Wrapper dataset for continual learning that filters by class indices.
-    """
-    
-    def __init__(
-        self,
-        base_dataset: Dataset,
-        class_indices: List[int],
-        class_mapping: Optional[Dict[int, int]] = None
-    ):
-        """
-        Args:
-            base_dataset: Original dataset
-            class_indices: List of class indices to include
-            class_mapping: Optional mapping from original to new class indices
-        """
-        self.base_dataset = base_dataset
-        self.class_indices = set(class_indices)
-        self.class_mapping = class_mapping
-        
-        # Filter indices that belong to specified classes
-        self.valid_indices = []
-        for idx in range(len(base_dataset)):
-            _, label = base_dataset[idx]
-            if label in self.class_indices:
-                self.valid_indices.append(idx)
-    
-    def __len__(self) -> int:
-        return len(self.valid_indices)
-    
-    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, int]:
-        real_idx = self.valid_indices[idx]
-        img, label = self.base_dataset[real_idx]
-        
-        if self.class_mapping is not None:
-            label = self.class_mapping[label]
-        
-        return img, label
+class _TaskSubset(Dataset):
+    """A task's slice of a pool: applies the transform, remaps the label."""
 
-
-class TinyImageNet(Dataset):
-    """
-    TinyImageNet dataset (200 classes, 64x64 images).
-    """
-    
-    def __init__(
-        self,
-        root: str,
-        train: bool = True,
-        transform: Optional[transforms.Compose] = None,
-        download: bool = True
-    ):
-        self.root = os.path.join(root, 'tiny-imagenet-200')
-        self.train = train
+    def __init__(self, pool, indices: np.ndarray, transform, label_map: Dict[int, int],
+                 permutation: Optional[np.ndarray] = None):
+        self.pool = pool
+        self.indices = indices
         self.transform = transform
-        
-        if download and not os.path.exists(self.root):
-            self._download()
-        
-        self.images = []
-        self.labels = []
-        self._load_data()
-        
-    def _download(self):
-        """Download TinyImageNet dataset."""
-        import urllib.request
-        import zipfile
-        
-        url = 'http://cs231n.stanford.edu/tiny-imagenet-200.zip'
-        zip_path = os.path.join(os.path.dirname(self.root), 'tiny-imagenet-200.zip')
-        
-        print("Downloading TinyImageNet...")
-        os.makedirs(os.path.dirname(self.root), exist_ok=True)
-        urllib.request.urlretrieve(url, zip_path)
-        
-        print("Extracting...")
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            zip_ref.extractall(os.path.dirname(self.root))
-        
-        os.remove(zip_path)
-        print("Done!")
-        
-    def _load_data(self):
-        """Load image paths and labels."""
-        # Load class names
-        wnids_path = os.path.join(self.root, 'wnids.txt')
-        with open(wnids_path, 'r') as f:
-            self.class_names = [line.strip() for line in f.readlines()]
-        self.class_to_idx = {name: idx for idx, name in enumerate(self.class_names)}
-        
-        if self.train:
-            train_dir = os.path.join(self.root, 'train')
-            for class_name in self.class_names:
-                class_dir = os.path.join(train_dir, class_name, 'images')
-                if os.path.exists(class_dir):
-                    for img_name in os.listdir(class_dir):
-                        if img_name.endswith('.JPEG'):
-                            self.images.append(os.path.join(class_dir, img_name))
-                            self.labels.append(self.class_to_idx[class_name])
-        else:
-            val_dir = os.path.join(self.root, 'val')
-            val_annotations = os.path.join(val_dir, 'val_annotations.txt')
-            
-            img_to_class = {}
-            with open(val_annotations, 'r') as f:
-                for line in f.readlines():
-                    parts = line.strip().split('\t')
-                    img_to_class[parts[0]] = parts[1]
-            
-            val_images_dir = os.path.join(val_dir, 'images')
-            for img_name in os.listdir(val_images_dir):
-                if img_name.endswith('.JPEG'):
-                    self.images.append(os.path.join(val_images_dir, img_name))
-                    class_name = img_to_class[img_name]
-                    self.labels.append(self.class_to_idx[class_name])
-    
-    def __len__(self) -> int:
-        return len(self.images)
-    
-    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, int]:
-        img_path = self.images[idx]
-        label = self.labels[idx]
-        
-        img = Image.open(img_path).convert('RGB')
-        
-        if self.transform:
+        self.label_map = label_map
+        self.permutation = permutation
+
+    def __len__(self):
+        return len(self.indices)
+
+    def __getitem__(self, i):
+        img, label = self.pool[int(self.indices[i])]
+        if self.transform is not None:
             img = self.transform(img)
-        
-        return img, label
+        if self.permutation is not None:
+            img = img.reshape(-1)[self.permutation]
+        return img, self.label_map[int(label)]
 
 
-def get_cifar100_transforms(train: bool = True) -> transforms.Compose:
-    """Get transforms for CIFAR-100."""
-    if train:
-        return transforms.Compose([
-            transforms.RandomCrop(32, padding=4),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.5071, 0.4867, 0.4408],
-                std=[0.2675, 0.2565, 0.2761]
-            )
-        ])
-    else:
-        return transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.5071, 0.4867, 0.4408],
-                std=[0.2675, 0.2565, 0.2761]
-            )
-        ])
+class TinyImageNet:
+    """TinyImageNet-200 as a raw pool of (PIL, label)."""
+
+    URL = 'http://cs231n.stanford.edu/tiny-imagenet-200.zip'
+
+    def __init__(self, root: str, train: bool = True, download: bool = True):
+        self.root = os.path.join(root, 'tiny-imagenet-200')
+        if download and not os.path.exists(self.root):
+            self._download(root)
+        self.paths: List[str] = []
+        labels: List[int] = []
+
+        with open(os.path.join(self.root, 'wnids.txt')) as f:
+            wnids = [line.strip() for line in f if line.strip()]
+        self.class_to_idx = {w: i for i, w in enumerate(wnids)}
+
+        if train:
+            for wnid in wnids:
+                d = os.path.join(self.root, 'train', wnid, 'images')
+                if not os.path.isdir(d):
+                    continue
+                for fn in sorted(os.listdir(d)):
+                    if fn.endswith('.JPEG'):
+                        self.paths.append(os.path.join(d, fn))
+                        labels.append(self.class_to_idx[wnid])
+        else:
+            ann = os.path.join(self.root, 'val', 'val_annotations.txt')
+            mapping = {}
+            with open(ann) as f:
+                for line in f:
+                    parts = line.strip().split('\t')
+                    mapping[parts[0]] = parts[1]
+            d = os.path.join(self.root, 'val', 'images')
+            for fn in sorted(os.listdir(d)):
+                if fn.endswith('.JPEG'):
+                    self.paths.append(os.path.join(d, fn))
+                    labels.append(self.class_to_idx[mapping[fn]])
+
+        self.targets = np.asarray(labels)
+
+    def _download(self, root):
+        import urllib.request, zipfile
+        os.makedirs(root, exist_ok=True)
+        zip_path = os.path.join(root, 'tiny-imagenet-200.zip')
+        print('Downloading TinyImageNet-200 ...')
+        urllib.request.urlretrieve(self.URL, zip_path)
+        with zipfile.ZipFile(zip_path) as z:
+            z.extractall(root)
+        os.remove(zip_path)
+
+    def __len__(self):
+        return len(self.paths)
+
+    def __getitem__(self, i):
+        return Image.open(self.paths[i]).convert('RGB'), int(self.targets[i])
 
 
-def get_tinyimagenet_transforms(train: bool = True) -> transforms.Compose:
-    """Get transforms for TinyImageNet."""
-    if train:
-        return transforms.Compose([
-            transforms.RandomCrop(64, padding=8),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225]
-            )
-        ])
-    else:
-        return transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225]
-            )
-        ])
+# --------------------------------------------------------------------------- #
+# Transforms
+# --------------------------------------------------------------------------- #
+_STATS = {
+    'cifar100': ([0.5071, 0.4867, 0.4408], [0.2675, 0.2565, 0.2761]),
+    'tinyimagenet': ([0.4802, 0.4481, 0.3975], [0.2770, 0.2691, 0.2821]),
+    'imagenet1k': ([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+}
 
 
+def build_transforms(dataset: str, train: bool):
+    if dataset == 'pmnist':
+        return transforms.Compose([transforms.ToTensor(),
+                                   transforms.Normalize((0.1307,), (0.3081,))])
+    mean, std = _STATS[dataset]
+    norm = transforms.Normalize(mean, std)
+    if dataset == 'cifar100':
+        aug = [transforms.RandomCrop(32, padding=4), transforms.RandomHorizontalFlip()]
+        base = []
+    elif dataset == 'tinyimagenet':
+        aug = [transforms.RandomCrop(64, padding=8), transforms.RandomHorizontalFlip()]
+        base = []
+    else:  # imagenet1k
+        aug = [transforms.RandomResizedCrop(224), transforms.RandomHorizontalFlip()]
+        base = [transforms.Resize(256), transforms.CenterCrop(224)]
+    steps = (aug if train else base) + [transforms.ToTensor(), norm]
+    return transforms.Compose(steps)
+
+
+# --------------------------------------------------------------------------- #
+# Benchmark
+# --------------------------------------------------------------------------- #
 class ContinualLearningBenchmark:
-    """
-    Creates continual learning benchmark with proper data splits.
-    
-    Splits: 70% train, 20% test, 10% validation
-    """
-    
-    def __init__(
-        self,
-        dataset_name: str,
-        num_tasks: int,
-        data_root: str = './data',
-        seed: int = 42,
-        scenario: str = 'class_il'
-    ):
-        """
-        Args:
-            dataset_name: 'pmnist', 'cifar100', or 'tinyimagenet'
-            num_tasks: Number of tasks (10 or 20)
-            data_root: Root directory for datasets
-            seed: Random seed for reproducibility
-            scenario: 'class_il' or 'task_il'
-        """
+    """Sequential tasks with 70 / 10 / 20 splits."""
+
+    NUM_CLASSES = {'pmnist': 10, 'cifar100': 100, 'tinyimagenet': 200, 'imagenet1k': 1000}
+
+    def __init__(self, dataset_name: str, num_tasks: int, data_root: str = './data',
+                 seed: int = 42, scenario: str = 'class_il', num_workers: int = 4,
+                 download: bool = True):
         self.dataset_name = dataset_name.lower()
+        if self.dataset_name not in self.NUM_CLASSES:
+            raise ValueError(f'unknown dataset {dataset_name!r}')
         self.num_tasks = num_tasks
         self.data_root = data_root
         self.seed = seed
         self.scenario = scenario
-        
-        # Set random seed
-        np.random.seed(seed)
-        torch.manual_seed(seed)
-        
-        # Initialize dataset-specific parameters
-        self._setup_dataset()
-        
-    def _setup_dataset(self):
-        """Setup dataset-specific parameters."""
+        self.num_workers = num_workers
+        self.download = download
+
+        self.num_classes = self.NUM_CLASSES[self.dataset_name]
+        rng = np.random.RandomState(seed)
+
         if self.dataset_name == 'pmnist':
-            self.num_classes = 10
-            self.classes_per_task = 10  # All classes per task, different permutation
-            self.input_size = 784
-            
-            # Generate random permutations for each task
-            self.permutations = [
-                np.random.permutation(784) if i > 0 else np.arange(784)
-                for i in range(self.num_tasks)
-            ]
-            
-        elif self.dataset_name == 'cifar100':
-            self.num_classes = 100
-            self.classes_per_task = self.num_classes // self.num_tasks
-            self.input_size = 32
-            
-            # Randomly shuffle class order
-            self.class_order = np.random.permutation(self.num_classes)
-            
-        elif self.dataset_name == 'tinyimagenet':
-            self.num_classes = 200
-            self.classes_per_task = self.num_classes // self.num_tasks
-            self.input_size = 64
-            
-            # Randomly shuffle class order
-            self.class_order = np.random.permutation(self.num_classes)
-            
+            self.classes_per_task = 10
+            self.permutations = [np.arange(784) if t == 0 else rng.permutation(784)
+                                 for t in range(num_tasks)]
+            self.class_order = np.arange(10)
         else:
-            raise ValueError(f"Unknown dataset: {self.dataset_name}")
-    
+            if self.num_classes % num_tasks:
+                raise ValueError(
+                    f'{self.num_classes} classes do not divide evenly into {num_tasks} tasks')
+            self.classes_per_task = self.num_classes // num_tasks
+            self.permutations = [None] * num_tasks
+            self.class_order = rng.permutation(self.num_classes)
+
+        self._pool = None
+        self._split_cache: Dict[int, Tuple[np.ndarray, np.ndarray, np.ndarray]] = {}
+
+    # -- pool --------------------------------------------------------------- #
+    def _get_pool(self):
+        if self._pool is not None:
+            return self._pool
+        name, root = self.dataset_name, self.data_root
+
+        if name == 'pmnist':
+            tr = datasets.MNIST(root, train=True, download=self.download)
+            te = datasets.MNIST(root, train=False, download=self.download)
+            pool = _ConcatPool(tr, te, tr.targets.numpy(), te.targets.numpy())
+        elif name == 'cifar100':
+            tr = datasets.CIFAR100(root, train=True, download=self.download)
+            te = datasets.CIFAR100(root, train=False, download=self.download)
+            pool = _ConcatPool(tr, te, tr.targets, te.targets)
+        elif name == 'tinyimagenet':
+            tr = TinyImageNet(root, train=True, download=self.download)
+            te = TinyImageNet(root, train=False, download=self.download)
+            pool = _ConcatPool(tr, te, tr.targets, te.targets)
+        else:
+            base = os.path.join(root, 'imagenet')
+            train_dir, val_dir = os.path.join(base, 'train'), os.path.join(base, 'val')
+            if not (os.path.isdir(train_dir) and os.path.isdir(val_dir)):
+                raise FileNotFoundError(
+                    f'ImageNet-1k not found. Expected ImageFolder layouts at\n'
+                    f'  {train_dir}\n  {val_dir}\n'
+                    'ImageNet cannot be downloaded automatically; fetch it from '
+                    'https://image-net.org and arrange it as class-per-directory.')
+            tr = datasets.ImageFolder(train_dir)
+            te = datasets.ImageFolder(val_dir)
+            pool = _ConcatPool(tr, te, tr.targets, te.targets)
+
+        self._pool = pool
+        return pool
+
+    # -- task definition ---------------------------------------------------- #
     def get_task_classes(self, task_id: int) -> List[int]:
-        """Get class indices for a specific task."""
         if self.dataset_name == 'pmnist':
-            return list(range(10))  # All classes, different permutation
-        else:
-            start = task_id * self.classes_per_task
-            end = start + self.classes_per_task
-            return self.class_order[start:end].tolist()
-    
+            return list(range(10))
+        start = task_id * self.classes_per_task
+        return self.class_order[start:start + self.classes_per_task].tolist()
+
     def get_class_mapping(self, task_id: int) -> Dict[int, int]:
-        """
-        Get mapping from original class indices to task-local indices.
-        
-        For Class-IL: Maps to cumulative class indices
-        For Task-IL: Maps to task-local indices (0 to classes_per_task-1)
-        """
         classes = self.get_task_classes(task_id)
-        
         if self.scenario == 'class_il':
-            # Cumulative mapping
-            start_idx = task_id * self.classes_per_task
-            return {orig: start_idx + i for i, orig in enumerate(classes)}
-        else:
-            # Task-local mapping
-            return {orig: i for i, orig in enumerate(classes)}
-    
-    def get_task_data(
-        self,
-        task_id: int,
-        batch_size: int = 64
-    ) -> Tuple[DataLoader, DataLoader, DataLoader]:
-        """
-        Get train, validation, and test data loaders for a task.
-        
-        Data split: 70% train, 10% validation, 20% test
-        
-        Args:
-            task_id: Task index (0-indexed)
-            batch_size: Batch size for data loaders
-            
-        Returns:
-            Tuple of (train_loader, val_loader, test_loader)
-        """
-        if self.dataset_name == 'pmnist':
-            return self._get_pmnist_task_data(task_id, batch_size)
-        elif self.dataset_name == 'cifar100':
-            return self._get_cifar100_task_data(task_id, batch_size)
-        elif self.dataset_name == 'tinyimagenet':
-            return self._get_tinyimagenet_task_data(task_id, batch_size)
-    
-    def _get_pmnist_task_data(
-        self,
-        task_id: int,
-        batch_size: int
-    ) -> Tuple[DataLoader, DataLoader, DataLoader]:
-        """Get PMNIST task data with specific permutation."""
-        permutation = self.permutations[task_id]
-        
-        # Full train and test datasets with permutation
-        train_dataset = PermutedMNIST(
-            root=self.data_root, train=True, download=True,
-            permutation=permutation
-        )
-        test_dataset = PermutedMNIST(
-            root=self.data_root, train=False, download=True,
-            permutation=permutation
-        )
-        
-        # Split train into train (70%) and val (10%)
-        # Paper specifies: 70% train, 10% validation, 20% test
-        # Original MNIST train is 60000, test is 10000 = 70000 total
-        # We need: 70% train (~49000), 10% val (~7000), 20% test (~14000)
-        # Use original train for train+val, original test for test
-        # Split original train: 87.5% for train, 12.5% for val
-        # This gives roughly 52500 train, 7500 val from 60000 train samples
-        train_size = int(0.875 * len(train_dataset))
-        val_size = len(train_dataset) - train_size
-        
-        train_subset, val_subset = random_split(
-            train_dataset, [train_size, val_size],
-            generator=torch.Generator().manual_seed(self.seed + task_id)
-        )
-        
-        train_loader = DataLoader(
-            train_subset, batch_size=10, shuffle=True, num_workers=2
-        )
-        val_loader = DataLoader(
-            val_subset, batch_size=batch_size, shuffle=False, num_workers=2
-        )
-        test_loader = DataLoader(
-            test_dataset, batch_size=batch_size, shuffle=False, num_workers=2
-        )
-        
-        return train_loader, val_loader, test_loader
-    
-    def _get_cifar100_task_data(
-        self,
-        task_id: int,
-        batch_size: int
-    ) -> Tuple[DataLoader, DataLoader, DataLoader]:
-        """Get CIFAR-100 task data."""
-        classes = self.get_task_classes(task_id)
-        class_mapping = self.get_class_mapping(task_id)
-        
-        # Load full datasets
-        train_transform = get_cifar100_transforms(train=True)
-        test_transform = get_cifar100_transforms(train=False)
-        
-        full_train = datasets.CIFAR100(
-            root=self.data_root, train=True, download=True,
-            transform=train_transform
-        )
-        full_test = datasets.CIFAR100(
-            root=self.data_root, train=False, download=True,
-            transform=test_transform
-        )
-        
-        # Filter by task classes
-        train_dataset = ContinualLearningDataset(
-            full_train, classes, class_mapping
-        )
-        test_dataset = ContinualLearningDataset(
-            full_test, classes, class_mapping
-        )
-        
-        # Split train into train and validation
-        train_size = int(0.875 * len(train_dataset))
-        val_size = len(train_dataset) - train_size
-        
-        train_subset, val_subset = random_split(
-            train_dataset, [train_size, val_size],
-            generator=torch.Generator().manual_seed(self.seed + task_id)
-        )
-        
-        train_loader = DataLoader(
-            train_subset, batch_size=batch_size, shuffle=True, num_workers=2
-        )
-        val_loader = DataLoader(
-            val_subset, batch_size=batch_size, shuffle=False, num_workers=2
-        )
-        test_loader = DataLoader(
-            test_dataset, batch_size=batch_size, shuffle=False, num_workers=2
-        )
-        
-        return train_loader, val_loader, test_loader
-    
-    def _get_tinyimagenet_task_data(
-        self,
-        task_id: int,
-        batch_size: int
-    ) -> Tuple[DataLoader, DataLoader, DataLoader]:
-        """Get TinyImageNet task data."""
-        classes = self.get_task_classes(task_id)
-        class_mapping = self.get_class_mapping(task_id)
-        
-        # Load full datasets
-        train_transform = get_tinyimagenet_transforms(train=True)
-        test_transform = get_tinyimagenet_transforms(train=False)
-        
-        full_train = TinyImageNet(
-            root=self.data_root, train=True,
-            transform=train_transform, download=True
-        )
-        full_test = TinyImageNet(
-            root=self.data_root, train=False,
-            transform=test_transform, download=True
-        )
-        
-        # Filter by task classes
-        train_dataset = ContinualLearningDataset(
-            full_train, classes, class_mapping
-        )
-        test_dataset = ContinualLearningDataset(
-            full_test, classes, class_mapping
-        )
-        
-        # Split train into train and validation
-        train_size = int(0.875 * len(train_dataset))
-        val_size = len(train_dataset) - train_size
-        
-        train_subset, val_subset = random_split(
-            train_dataset, [train_size, val_size],
-            generator=torch.Generator().manual_seed(self.seed + task_id)
-        )
-        
-        train_loader = DataLoader(
-            train_subset, batch_size=batch_size, shuffle=True, num_workers=2
-        )
-        val_loader = DataLoader(
-            val_subset, batch_size=batch_size, shuffle=False, num_workers=2
-        )
-        test_loader = DataLoader(
-            test_dataset, batch_size=batch_size, shuffle=False, num_workers=2
-        )
-        
-        return train_loader, val_loader, test_loader
-    
+            base = task_id * self.classes_per_task
+            return {int(c): base + i for i, c in enumerate(classes)}
+        return {int(c): i for i, c in enumerate(classes)}
+
+    def _split_indices(self, task_id: int) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        if task_id in self._split_cache:
+            return self._split_cache[task_id]
+        pool = self._get_pool()
+        classes = np.asarray(self.get_task_classes(task_id))
+        idx = np.nonzero(np.isin(pool.targets, classes))[0]
+        rng = np.random.RandomState(self.seed * 1000 + task_id)
+        rng.shuffle(idx)
+        n = len(idx)
+        n_train = int(round(TRAIN_FRAC * n))
+        n_val = int(round(VAL_FRAC * n))
+        split = (idx[:n_train], idx[n_train:n_train + n_val], idx[n_train + n_val:])
+        self._split_cache[task_id] = split
+        return split
+
+    # -- loaders ------------------------------------------------------------ #
+    def get_task_data(self, task_id: int, batch_size: int = 64
+                      ) -> Tuple[DataLoader, DataLoader, DataLoader]:
+        pool = self._get_pool()
+        train_idx, val_idx, test_idx = self._split_indices(task_id)
+        mapping = self.get_class_mapping(task_id)
+        perm = self.permutations[task_id]
+
+        tf_train = build_transforms(self.dataset_name, train=True)
+        tf_eval = build_transforms(self.dataset_name, train=False)
+
+        def make(indices, transform, shuffle):
+            ds = _TaskSubset(pool, indices, transform, mapping, perm)
+            return DataLoader(ds, batch_size=batch_size, shuffle=shuffle,
+                              num_workers=self.num_workers,
+                              pin_memory=torch.cuda.is_available(),
+                              persistent_workers=self.num_workers > 0)
+
+        return (make(train_idx, tf_train, True),
+                make(val_idx, tf_eval, False),
+                make(test_idx, tf_eval, False))
+
+    def get_joint_data(self, batch_size: int = 64) -> Tuple[DataLoader, DataLoader]:
+        """All tasks at once -- the joint-training upper bound."""
+        pool = self._get_pool()
+        mapping: Dict[int, int] = {}
+        train_all, test_all = [], []
+        for t in range(self.num_tasks):
+            tr, va, te = self._split_indices(t)
+            train_all += [tr, va]
+            test_all.append(te)
+            mapping.update(self.get_class_mapping(t))
+        tf_train = build_transforms(self.dataset_name, train=True)
+        tf_eval = build_transforms(self.dataset_name, train=False)
+        train_ds = _TaskSubset(pool, np.concatenate(train_all), tf_train, mapping,
+                               self.permutations[0])
+        test_ds = _TaskSubset(pool, np.concatenate(test_all), tf_eval, mapping,
+                              self.permutations[0])
+        kw = dict(batch_size=batch_size, num_workers=self.num_workers,
+                  pin_memory=torch.cuda.is_available())
+        return DataLoader(train_ds, shuffle=True, **kw), DataLoader(test_ds, shuffle=False, **kw)
+
     def get_cumulative_classes(self, task_id: int) -> int:
-        """Get total number of classes seen up to and including task_id."""
         if self.dataset_name == 'pmnist':
-            return 10  # Always 10 classes
+            return 10
         return (task_id + 1) * self.classes_per_task
+
+    def split_report(self, task_id: int = 0) -> Dict[str, float]:
+        tr, va, te = self._split_indices(task_id)
+        n = len(tr) + len(va) + len(te)
+        return {'train': len(tr) / n, 'val': len(va) / n, 'test': len(te) / n, 'n': n}

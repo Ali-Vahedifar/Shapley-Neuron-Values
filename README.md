@@ -27,21 +27,71 @@ No replay buffer. No extra parameters. No task labels at test time (in the Class
 ## Repository layout
 
 ```
-SNV/                     the method: snv_core.py (Shapley valuation, masks) and
-                         snv_adaptive.py (SNV-A: task-local phases, routed
-                         Class-IL inference, adaptive mask size)
-snv_adaptive_run.py      runs SNV-A through the unchanged GTEP worker
-baselines/               every method SNV is compared against: SGD, Joint, EWC,
-                         SI, LwF, WSN, PEC, SpaceNet, NISPA, UniCLUN, MCL
-audited_gtep.py          the GTEP protocol: halves, search spaces, one run, the queue
-campaign/                the full campaign and the report tables
-datasets.py              CIFAR-100, CIFAR-20, TinyImageNet-200, ImageNet-1k
-metrics.py, audit_cost.py    ACC/BWT/FWT/PS, and the cost ledger
-hyperparameters/         the selected CIFAR-100 configurations
-results/cifar100/        the reported results and the runs behind them
-scripts/                 smoke test and the CIFAR-100 entry points
-tests/                   the estimator, SNV-A, the baselines, datasets, metrics
-docs/                    PROTOCOL.md, METRICS.md, COSTS.md, BASELINES.md, PACKAGE.md
+SNV/                        the method
+  snv_core.py               Shapley neuron valuation, the estimator, the masks
+  snv_adaptive.py           SNV-A: task-local phases, routed Class-IL inference,
+                            per-task adaptive mask size -- the reported SNV
+snv_adaptive_run.py         runs SNV-A through the unchanged GTEP worker
+snv_core.py                 import shim for SNV/snv_core.py
+
+baselines/                  every method SNV is compared against
+  __init__.py               the registry: build_method, ALL_METHODS, ...
+  regularization.py         re-exports EWC, SI, LwF, SGD
+  sparse.py                 re-exports WSN, SpaceNet, NISPA, PEC
+  joint_audited.py          JointPrefix, the audited joint-training upper bound
+  SGD/ Joint/               bounds (lower, upper)
+  EWC/ SI/ LwF/             regularisation
+  WSN/ PEC/ SpaceNet/ NISPA/    sparse / architecture
+  UniCLUN/                  continual learning + machine unlearning
+  MCL/                      Matryoshka Continual Learning
+
+audited_gtep.py             the GTEP protocol: disjoint halves, search spaces,
+                            one run, the cost ledger hooks, the run queue
+campaign/
+  run_campaign.py           the full campaign: R x 3-seed search, then the
+                            winner three times on the clean half
+  build_report.py           metric, cost and hyperparameter tables
+                            (CSV, XLSX, Markdown, LaTeX, HTML)
+  snv_adaptive_compare.py   SNV-A pilots against the audited trials
+
+datasets.py                 CIFAR-100, CIFAR-20, TinyImageNet-200, ImageNet-1k
+models.py                   ResNet-18 / ResNet-50 backbones, multi-head models
+metrics.py                  ACC, BWT, FWT, PS (+ P, S, AF)
+audit_cost.py               cost ledger: GPU-hours, peak memory, parameters,
+                            GFLOPs, latency, energy
+cost.py, inrun.py           lightweight trackers used by train.py
+train.py                    standalone single-method trainer
+cl_base.py                  the ContinualMethod interface every method implements
+training_policy.py, utils.py, method_loader.py, wsn_helpers.py
+
+hyperparameters/            the selected CIFAR-100 configurations
+  cifar100_best.json/.md    each method's winner and the metrics it scored
+  __init__.py               best_config(method, scenario)
+  extract_cifar100_best.py  regenerates both files from a campaign directory
+
+results/cifar100/           the reported results and the runs behind them
+  metrics_summary.md/.csv   ACC, BWT, FWT, PS per method, mean +/- sd
+  metrics_per_seed.csv      one row per run
+  costs_summary.csv         GPU-hours, memory, parameters, energy
+  accuracy_matrices.json    the task-by-task matrix of every run
+  search_space.md/.json     the space and every trial's score
+  blocks/                   the campaign blocks: all trials and the winner
+  runs/                     result.json, command.json and log per clean run
+results/import_cifar100.py, results/make_cifar100_tables.py
+
+scripts/
+  smoke_test.sh             every method, 2 tasks, 1 epoch, 64 samples
+  run_cifar100_campaign.sh  the campaign that produced results/cifar100
+  run_cifar100_selected.sh  rerun the selected configurations
+  run_cifar100_snv_best.sh  SNV-A with its selected configuration
+  export_cifar100_results.sh    rebuild the hyperparameter and result tables
+
+tests/                      the estimator, SNV-A, the baselines, the metrics and
+                            cost ledger, the four benchmarks, the hyperparameters
+docs/                       PROTOCOL.md, METRICS.md, COSTS.md, BASELINES.md,
+                            PACKAGE.md (the full technical README)
+THIRD_PARTY.md              the upstream repositories the baselines follow
+requirements.txt            Python 3.10, PyTorch 2.6 / CUDA 12.4
 ```
 
 Full technical documentation: [docs/PACKAGE.md](docs/PACKAGE.md).

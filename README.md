@@ -120,31 +120,7 @@ best_config('snv', 'class_il')        # SNV-A's Class-IL winner
 entry('ewc', 'task_il')['clean_eval_D_E']
 ```
 
-## Results
 
-CIFAR-100, Class-IL, accuracy on the held-out evaluation half, mean ± sd over
-seeds 42/43/44. Hyperparameters were selected on a disjoint half, so no
-configuration ever saw the data it is reported on
-([protocol](docs/PROTOCOL.md), [full tables](results/cifar100/metrics_summary.md)).
-
-| Method | ACC | | Method | ACC |
-|---|---:|---|---|---:|
-| Joint training (upper bound) | 0.6543 ± 0.0240 | | SGD (lower bound) | 0.0872 ± 0.0070 |
-| **SNV** | **0.3618 ± 0.0206** | | SI | 0.0856 ± 0.0049 |
-| PEC | 0.3284 ± 0.0125 | | EWC | 0.0839 ± 0.0066 |
-| UniCLUN | 0.3275 ± 0.0404 | | NISPA | 0.0824 ± 0.0054 |
-| MCL | 0.2722 ± 0.0255 | | SpaceNet | 0.0677 ± 0.0043 |
-| LwF | 0.1006 ± 0.0179 | | | |
-
-SNV is the strongest method here apart from the joint-training upper bound. In
-Task-IL it reaches 0.8175 ± 0.0157, behind joint training and WSN, which is
-given the task identity at test time.
-
-The selected configurations, the search space and every trial's score are in
-[hyperparameters/cifar100_best.md](hyperparameters/cifar100_best.md) and
-[results/cifar100/search_space.md](results/cifar100/search_space.md); the runs
-themselves, with their logs and cost measurements, are in
-[results/cifar100/](results/cifar100/).
 
 ---
 

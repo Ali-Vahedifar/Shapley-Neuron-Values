@@ -1,0 +1,384 @@
+{
+  "method": "joint",
+  "scenario": "task_il",
+  "config_origin": "current audited space; sample seed 7",
+  "tuning": [
+    {
+      "config": {
+        "lr": 0.0004442889681244212
+      },
+      "score": 0.9071914429132918,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r0_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r0_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r0_s44/result.json"
+      ],
+      "trial_index": 0
+    },
+    {
+      "config": {
+        "lr": 0.0002003080245101063
+      },
+      "score": 0.8907298757752441,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r1_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r1_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r1_s44/result.json"
+      ],
+      "trial_index": 1
+    },
+    {
+      "config": {
+        "lr": 0.0020038672435223836
+      },
+      "score": 0.884471300028082,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r2_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r2_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r2_s44/result.json"
+      ],
+      "trial_index": 2
+    },
+    {
+      "config": {
+        "lr": 0.00013959587116837914
+      },
+      "score": 0.8795403213663668,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r3_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r3_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r3_s44/result.json"
+      ],
+      "trial_index": 3
+    },
+    {
+      "config": {
+        "lr": 0.0011796794351545566
+      },
+      "score": 0.9054146515454793,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r4_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r4_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r4_s44/result.json"
+      ],
+      "trial_index": 4
+    },
+    {
+      "config": {
+        "lr": 0.0005387382780493352
+      },
+      "score": 0.902272487393326,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r5_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r5_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r5_s44/result.json"
+      ],
+      "trial_index": 5
+    },
+    {
+      "config": {
+        "lr": 0.00013061644205180118
+      },
+      "score": 0.8745499295134159,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r6_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r6_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r6_s44/result.json"
+      ],
+      "trial_index": 6
+    },
+    {
+      "config": {
+        "lr": 0.0010348358517483782
+      },
+      "score": 0.9069447201545521,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r7_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r7_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r7_s44/result.json"
+      ],
+      "trial_index": 7
+    },
+    {
+      "config": {
+        "lr": 0.00011884784652203496
+      },
+      "score": 0.8711088391461984,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r8_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r8_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r8_s44/result.json"
+      ],
+      "trial_index": 8
+    },
+    {
+      "config": {
+        "lr": 0.0007367011831291912
+      },
+      "score": 0.908354741501855,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r9_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r9_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r9_s44/result.json"
+      ],
+      "trial_index": 9
+    },
+    {
+      "config": {
+        "lr": 0.00013794655119657423
+      },
+      "score": 0.8823241994304348,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r10_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r10_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r10_s44/result.json"
+      ],
+      "trial_index": 10
+    },
+    {
+      "config": {
+        "lr": 0.00015185392674426984
+      },
+      "score": 0.8827367457304846,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r11_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r11_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r11_s44/result.json"
+      ],
+      "trial_index": 11
+    },
+    {
+      "config": {
+        "lr": 0.0007063799737854452
+      },
+      "score": 0.9002047136233244,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r12_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r12_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r12_s44/result.json"
+      ],
+      "trial_index": 12
+    },
+    {
+      "config": {
+        "lr": 0.004505098069088989
+      },
+      "score": 0.8609184948814402,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r13_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r13_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r13_s44/result.json"
+      ],
+      "trial_index": 13
+    },
+    {
+      "config": {
+        "lr": 0.00017684953502478866
+      },
+      "score": 0.8831545744993781,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r14_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r14_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r14_s44/result.json"
+      ],
+      "trial_index": 14
+    },
+    {
+      "config": {
+        "lr": 0.00027956186510145136
+      },
+      "score": 0.8958852751640868,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r15_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r15_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r15_s44/result.json"
+      ],
+      "trial_index": 15
+    },
+    {
+      "config": {
+        "lr": 0.0017983178074618667
+      },
+      "score": 0.8905529950704798,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r16_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r16_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r16_s44/result.json"
+      ],
+      "trial_index": 16
+    },
+    {
+      "config": {
+        "lr": 0.007859915641919159
+      },
+      "score": 0.8488980475642052,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r17_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r17_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r17_s44/result.json"
+      ],
+      "trial_index": 17
+    },
+    {
+      "config": {
+        "lr": 0.0014262836285630588
+      },
+      "score": 0.9031768799304611,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r18_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r18_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r18_s44/result.json"
+      ],
+      "trial_index": 18
+    },
+    {
+      "config": {
+        "lr": 0.000621385263210508
+      },
+      "score": 0.9063820839209272,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r19_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r19_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r19_s44/result.json"
+      ],
+      "trial_index": 19
+    },
+    {
+      "config": {
+        "lr": 0.008964172623762685
+      },
+      "score": 0.8524840602981051,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r20_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r20_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r20_s44/result.json"
+      ],
+      "trial_index": 20
+    },
+    {
+      "config": {
+        "lr": 0.00012392683584421782
+      },
+      "score": 0.8754483851184919,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r21_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r21_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r21_s44/result.json"
+      ],
+      "trial_index": 21
+    },
+    {
+      "config": {
+        "lr": 0.0052111901231607196
+      },
+      "score": 0.865307686593138,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r22_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r22_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r22_s44/result.json"
+      ],
+      "trial_index": 22
+    },
+    {
+      "config": {
+        "lr": 0.0003795059354842256
+      },
+      "score": 0.9015397791461707,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r23_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r23_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r23_s44/result.json"
+      ],
+      "trial_index": 23
+    },
+    {
+      "config": {
+        "lr": 0.00019431671803074775
+      },
+      "score": 0.8861021713089244,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r24_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r24_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r24_s44/result.json"
+      ],
+      "trial_index": 24
+    },
+    {
+      "config": {
+        "lr": 0.00017202219151505612
+      },
+      "score": 0.8887704017277671,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r25_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r25_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r25_s44/result.json"
+      ],
+      "trial_index": 25
+    },
+    {
+      "config": {
+        "lr": 0.00041396502321218865
+      },
+      "score": 0.9044760464471479,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r26_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r26_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r26_s44/result.json"
+      ],
+      "trial_index": 26
+    },
+    {
+      "config": {
+        "lr": 0.004287979676026034
+      },
+      "score": 0.8631855612913596,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r27_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r27_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r27_s44/result.json"
+      ],
+      "trial_index": 27
+    },
+    {
+      "config": {
+        "lr": 0.0002298543672795521
+      },
+      "score": 0.892349035558801,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r28_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r28_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r28_s44/result.json"
+      ],
+      "trial_index": 28
+    },
+    {
+      "config": {
+        "lr": 0.0014561305960918238
+      },
+      "score": 0.8949013143067702,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r29_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r29_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r29_s44/result.json"
+      ],
+      "trial_index": 29
+    }
+  ],
+  "best": {
+    "config": {
+      "lr": 0.0007367011831291912
+    },
+    "score": 0.908354741501855,
+    "results": [
+      "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r9_s42/result.json",
+      "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r9_s43/result.json",
+      "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_ht_r9_s44/result.json"
+    ],
+    "trial_index": 9
+  },
+  "evaluation": [
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_clean_eval_s42/result.json",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_clean_eval_s43/result.json",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/joint_task_il_clean_eval_s44/result.json"
+  ]
+}

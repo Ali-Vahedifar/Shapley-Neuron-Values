@@ -1,0 +1,25 @@
+{
+ "command": [
+  "/opt/conda/bin/python",
+  "-u",
+  "/root/Snv_continual_learning/gtep_paper_first_20260906/source/snv_adaptive_run.py",
+  "--scenario",
+  "task_il",
+  "--half",
+  "2",
+  "--seed",
+  "43",
+  "--config",
+  "{\"lr\": 0.0012981647010649356, \"truncation\": 0.05, \"task_local\": true, \"frozen_norm_eval\": true, \"bn_recal\": true, \"bn_recal_mode\": \"batch\", \"adaptive\": true, \"adaptive_rule\": \"coverage\", \"adaptive_coverage\": 0.9, \"routing\": \"maxprob\", \"rot_aux\": 0.0}",
+  "--out",
+  "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/snv_adaptive_task_il_clean_eval_s43",
+  "--epochs",
+  "200",
+  "--patience",
+  "15",
+  "--tasks",
+  "10"
+ ],
+ "gpu": "GPU-22c3dfea-8545-6f51-7adf-65485eb03c54",
+ "cost_policy": "exclusive GPU; clean training timing; separate inference FLOP pass"
+}

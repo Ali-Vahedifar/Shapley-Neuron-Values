@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/opt/conda/bin/python",
+    "-u",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/source/paper_run_worker.py",
+    "--one",
+    "--method",
+    "lwf",
+    "--scenario",
+    "task_il",
+    "--half",
+    "2",
+    "--seed",
+    "44",
+    "--config",
+    "{\"lr\": 0.0017298927810707927, \"lwf_lambda\": 0.9836237133425478, \"temperature\": 4.0}",
+    "--out",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/lwf_task_il_clean_eval_s44",
+    "--epochs",
+    "200",
+    "--patience",
+    "15",
+    "--tasks",
+    "10"
+  ],
+  "gpu": "GPU-7d219ab8-c962-f5a2-1fdb-35e0040c8cae",
+  "cost_policy": "exclusive GPU; clean training timing; separate inference FLOP pass"
+}

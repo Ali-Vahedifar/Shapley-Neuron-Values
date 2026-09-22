@@ -1,0 +1,446 @@
+{
+  "method": "nispa",
+  "scenario": "task_il",
+  "config_origin": "current audited space; sample seed 7",
+  "tuning": [
+    {
+      "config": {
+        "lr": 0.0004442889681244212,
+        "nispa_prune_perc": 73.77122934811254,
+        "nispa_recovery_perc": 3.603737892159415
+      },
+      "score": 0.8048958356366883,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r0_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r0_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r0_s44/result.json"
+      ],
+      "trial_index": 0
+    },
+    {
+      "config": {
+        "lr": 0.00013959587116837914,
+        "nispa_prune_perc": 83.39705010766723,
+        "nispa_recovery_perc": 2.462755667650342
+      },
+      "score": 0.7015697014546937,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r1_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r1_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r1_s44/result.json"
+      ],
+      "trial_index": 1
+    },
+    {
+      "config": {
+        "lr": 0.00013061644205180118,
+        "nispa_prune_perc": 82.6858933297355,
+        "nispa_recovery_perc": 1.1499826337679395
+      },
+      "score": 0.6752771097188939,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r2_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r2_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r2_s44/result.json"
+      ],
+      "trial_index": 2
+    },
+    {
+      "config": {
+        "lr": 0.0007367011831291912,
+        "nispa_prune_perc": 71.74638558936547,
+        "nispa_recovery_perc": 1.3628520533754602
+      },
+      "score": 0.7896607188164585,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r3_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r3_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r3_s44/result.json"
+      ],
+      "trial_index": 3
+    },
+    {
+      "config": {
+        "lr": 0.0007063799737854452,
+        "nispa_prune_perc": 90.67130311680096,
+        "nispa_recovery_perc": 1.4952078445985824
+      },
+      "score": 0.778543249519216,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r4_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r4_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r4_s44/result.json"
+      ],
+      "trial_index": 4
+    },
+    {
+      "config": {
+        "lr": 0.00027956186510145136,
+        "nispa_prune_perc": 85.68583056013973,
+        "nispa_recovery_perc": 4.790835769828023
+      },
+      "score": 0.745003744949338,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r5_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r5_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r5_s44/result.json"
+      ],
+      "trial_index": 5
+    },
+    {
+      "config": {
+        "lr": 0.0014262836285630588,
+        "nispa_prune_perc": 79.9170118662695,
+        "nispa_recovery_perc": 4.90502042237168
+      },
+      "score": 0.8276601197475394,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r6_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r6_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r6_s44/result.json"
+      ],
+      "trial_index": 6
+    },
+    {
+      "config": {
+        "lr": 0.00012392683584421782,
+        "nispa_prune_perc": 91.46171147621699,
+        "nispa_recovery_perc": 2.158437145326705
+      },
+      "score": 0.6446596321414885,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r7_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r7_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r7_s44/result.json"
+      ],
+      "trial_index": 7
+    },
+    {
+      "config": {
+        "lr": 0.00019431671803074775,
+        "nispa_prune_perc": 72.94480595195921,
+        "nispa_recovery_perc": 2.2339272964077375
+      },
+      "score": 0.7486033468798686,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r8_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r8_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r8_s44/result.json"
+      ],
+      "trial_index": 8
+    },
+    {
+      "config": {
+        "lr": 0.004287979676026034,
+        "nispa_prune_perc": 74.51815949809844,
+        "nispa_recovery_perc": 3.326400654649865
+      },
+      "score": 0.7915256648922036,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r9_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r9_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r9_s44/result.json"
+      ],
+      "trial_index": 9
+    },
+    {
+      "config": {
+        "lr": 0.0018959502528324618,
+        "nispa_prune_perc": 79.30993856814328,
+        "nispa_recovery_perc": 3.1909778628382313
+      },
+      "score": 0.8392797636580189,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r10_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r10_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r10_s44/result.json"
+      ],
+      "trial_index": 10
+    },
+    {
+      "config": {
+        "lr": 0.00013352972357290557,
+        "nispa_prune_perc": 71.49002924915581,
+        "nispa_recovery_perc": 1.8238348512773062
+      },
+      "score": 0.713479786220295,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r11_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r11_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r11_s44/result.json"
+      ],
+      "trial_index": 11
+    },
+    {
+      "config": {
+        "lr": 0.0022950911925748475,
+        "nispa_prune_perc": 80.68980764173507,
+        "nispa_recovery_perc": 2.256588681507166
+      },
+      "score": 0.8298607727652042,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r12_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r12_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r12_s44/result.json"
+      ],
+      "trial_index": 12
+    },
+    {
+      "config": {
+        "lr": 0.0014829405028289173,
+        "nispa_prune_perc": 81.32960940926938,
+        "nispa_recovery_perc": 2.1990679874547294
+      },
+      "score": 0.8285936555483095,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r13_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r13_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r13_s44/result.json"
+      ],
+      "trial_index": 13
+    },
+    {
+      "config": {
+        "lr": 0.0038793499916440063,
+        "nispa_prune_perc": 87.47486084323928,
+        "nispa_recovery_perc": 1.9763860428886115
+      },
+      "score": 0.8141039528984694,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r14_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r14_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r14_s44/result.json"
+      ],
+      "trial_index": 14
+    },
+    {
+      "config": {
+        "lr": 0.0014087937638394311,
+        "nispa_prune_perc": 83.12991259528629,
+        "nispa_recovery_perc": 4.500549982293716
+      },
+      "score": 0.8288464393235838,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r15_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r15_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r15_s44/result.json"
+      ],
+      "trial_index": 15
+    },
+    {
+      "config": {
+        "lr": 0.0028766735413721946,
+        "nispa_prune_perc": 77.19844412225466,
+        "nispa_recovery_perc": 4.920699389970329
+      },
+      "score": 0.8020204624362743,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r16_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r16_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r16_s44/result.json"
+      ],
+      "trial_index": 16
+    },
+    {
+      "config": {
+        "lr": 0.00017223902425235002,
+        "nispa_prune_perc": 80.45307054463068,
+        "nispa_recovery_perc": 4.0285637182609975
+      },
+      "score": 0.7324460761978737,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r17_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r17_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r17_s44/result.json"
+      ],
+      "trial_index": 17
+    },
+    {
+      "config": {
+        "lr": 0.00020135808364805027,
+        "nispa_prune_perc": 82.22407751189515,
+        "nispa_recovery_perc": 1.1568290281897506
+      },
+      "score": 0.6910908592674906,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r18_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r18_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r18_s44/result.json"
+      ],
+      "trial_index": 18
+    },
+    {
+      "config": {
+        "lr": 0.002169859995618112,
+        "nispa_prune_perc": 89.11427165532032,
+        "nispa_recovery_perc": 3.292103761109536
+      },
+      "score": 0.8221914457976126,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r19_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r19_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r19_s44/result.json"
+      ],
+      "trial_index": 19
+    },
+    {
+      "config": {
+        "lr": 0.005635800661063973,
+        "nispa_prune_perc": 77.84368782120242,
+        "nispa_recovery_perc": 3.781181465094637
+      },
+      "score": 0.7620268728159006,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r20_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r20_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r20_s44/result.json"
+      ],
+      "trial_index": 20
+    },
+    {
+      "config": {
+        "lr": 0.0015443287416248073,
+        "nispa_prune_perc": 84.4973801070623,
+        "nispa_recovery_perc": 2.824821325205652
+      },
+      "score": 0.8357183465621075,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r21_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r21_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r21_s44/result.json"
+      ],
+      "trial_index": 21
+    },
+    {
+      "config": {
+        "lr": 0.004785590802656815,
+        "nispa_prune_perc": 93.61702737769843,
+        "nispa_recovery_perc": 2.896393349678578
+      },
+      "score": 0.7860748371557845,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r22_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r22_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r22_s44/result.json"
+      ],
+      "trial_index": 22
+    },
+    {
+      "config": {
+        "lr": 0.002129631249889069,
+        "nispa_prune_perc": 71.5167356899305,
+        "nispa_recovery_perc": 3.8059680852176956
+      },
+      "score": 0.8150346429904181,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r23_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r23_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r23_s44/result.json"
+      ],
+      "trial_index": 23
+    },
+    {
+      "config": {
+        "lr": 0.0019690543741194976,
+        "nispa_prune_perc": 94.82739848666586,
+        "nispa_recovery_perc": 4.287699146438859
+      },
+      "score": 0.8036830851536937,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r24_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r24_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r24_s44/result.json"
+      ],
+      "trial_index": 24
+    },
+    {
+      "config": {
+        "lr": 0.0003708438355121553,
+        "nispa_prune_perc": 79.64478606116776,
+        "nispa_recovery_perc": 3.6746108635367527
+      },
+      "score": 0.7929565300926833,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r25_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r25_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r25_s44/result.json"
+      ],
+      "trial_index": 25
+    },
+    {
+      "config": {
+        "lr": 0.0001109496294497733,
+        "nispa_prune_perc": 81.54238215749415,
+        "nispa_recovery_perc": 1.6721935156261782
+      },
+      "score": 0.6737386922319947,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r26_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r26_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r26_s44/result.json"
+      ],
+      "trial_index": 26
+    },
+    {
+      "config": {
+        "lr": 0.0001714713586392157,
+        "nispa_prune_perc": 71.47386048328276,
+        "nispa_recovery_perc": 4.072931953890083
+      },
+      "score": 0.7459165233201158,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r27_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r27_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r27_s44/result.json"
+      ],
+      "trial_index": 27
+    },
+    {
+      "config": {
+        "lr": 0.0001814180288988843,
+        "nispa_prune_perc": 76.19037084242285,
+        "nispa_recovery_perc": 2.5637988125329083
+      },
+      "score": 0.7278362324797772,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r28_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r28_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r28_s44/result.json"
+      ],
+      "trial_index": 28
+    },
+    {
+      "config": {
+        "lr": 0.00553151313829305,
+        "nispa_prune_perc": 72.01453253000346,
+        "nispa_recovery_perc": 2.796749603797324
+      },
+      "score": 0.7651643421437404,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r29_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r29_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r29_s44/result.json"
+      ],
+      "trial_index": 29
+    }
+  ],
+  "best": {
+    "config": {
+      "lr": 0.0018959502528324618,
+      "nispa_prune_perc": 79.30993856814328,
+      "nispa_recovery_perc": 3.1909778628382313
+    },
+    "score": 0.8392797636580189,
+    "results": [
+      "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r10_s42/result.json",
+      "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r10_s43/result.json",
+      "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_ht_r10_s44/result.json"
+    ],
+    "trial_index": 10
+  },
+  "evaluation": [
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_clean_eval_s42/result.json",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_clean_eval_s43/result.json",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/nispa_task_il_clean_eval_s44/result.json"
+  ]
+}

@@ -209,6 +209,72 @@ def plot_capacity_growth(capacity_history: Sequence[float], save_path: Optional[
     _finish(fig, save_path)
 
 
+def plot_valuation_comparison(phi_abl, phi_run, groups, k: int,
+                              save_path: Optional[str] = None,
+                              title: str = 'Ablation vs trajectory valuation',
+                              figsize=(11, 4.5)):
+    """Rank-rank scatter plus per-layer agreement.
+
+    Left panel: each neuron at (rank under phi_abl, rank under phi_run).  Points
+    are coloured by which top-k set they land in, so the two off-diagonal
+    quadrants are exactly the neurons the criteria disagree about — the set the
+    dual-criterion argument depends on being non-empty and non-arbitrary.
+    """
+    from inrun import _rankdata, spearman
+
+    a = phi_abl.detach().cpu()
+    b = phi_run.detach().cpu()
+    n = a.numel()
+    ra, rb = _rankdata(a).numpy(), _rankdata(b).numpy()
+
+    top_a = np.zeros(n, dtype=bool)
+    top_b = np.zeros(n, dtype=bool)
+    top_a[np.argsort(-a.numpy())[:k]] = True
+    top_b[np.argsort(-b.numpy())[:k]] = True
+
+    both = top_a & top_b
+    only_a = top_a & ~top_b
+    only_b = top_b & ~top_a
+    neither = ~top_a & ~top_b
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=figsize,
+                                   gridspec_kw={'width_ratios': [1, 1.3]})
+    for sel, color, label, size in (
+            (neither, '#c8c8c8', 'in neither top-k', 4),
+            (both, '#2a7f3f', 'in both top-k', 9),
+            (only_a, '#c1440e', 'ablation only', 9),
+            (only_b, '#1f5fa8', 'trajectory only', 9)):
+        if sel.any():
+            ax1.scatter(ra[sel], rb[sel], s=size, c=color, label=label,
+                        alpha=0.75, linewidths=0)
+    ax1.axvline(n - k, color='k', linestyle=':', linewidth=1)
+    ax1.axhline(n - k, color='k', linestyle=':', linewidth=1)
+    ax1.set_xlabel(r'rank by $\phi_{\rm abl}$')
+    ax1.set_ylabel(r'rank by $\phi_{\rm run}$')
+    ax1.set_title(f'{title}\nSpearman {spearman(a, b):+.3f},  '
+                  f'top-k overlap {int(both.sum())}/{k}', fontsize=10)
+    ax1.legend(fontsize=7, frameon=False, loc='upper left')
+
+    names, rhos, counts = [], [], []
+    for g in groups:
+        if g.num_neurons > 2:
+            names.append(g.name)
+            rhos.append(spearman(a[g.start:g.end], b[g.start:g.end]))
+            counts.append(g.num_neurons)
+    y = np.arange(len(names))
+    ax2.barh(y, rhos, color=['#1f5fa8' if r >= 0 else '#c1440e' for r in rhos])
+    ax2.axvline(0, color='k', linewidth=0.8)
+    ax2.set_yticks(y)
+    ax2.set_yticklabels([f'{nm}  ({c})' for nm, c in zip(names, counts)], fontsize=6)
+    ax2.invert_yaxis()
+    ax2.set_xlim(-1, 1)
+    ax2.set_xlabel('per-layer Spearman')
+    ax2.set_title('Agreement by layer', fontsize=10)
+    ax2.grid(True, axis='x', alpha=0.3)
+
+    _finish(fig, save_path)
+
+
 # --------------------------------------------------------------------------- #
 def results_table(results: Dict[str, Dict[str, Dict]], methods: Sequence[str],
                   columns: Sequence[str], metrics: Sequence[str] = ('ACC', 'BWT', 'PS')) -> str:
@@ -267,3 +333,16 @@ def save_experiment_config(config: Dict, output_dir: str) -> str:
     with open(path, 'w') as f:
         json.dump(config, f, indent=2)
     return path
+
+
+import random
+import torch
+
+
+def set_seed(seed: int) -> None:
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False

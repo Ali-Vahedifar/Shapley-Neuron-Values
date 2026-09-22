@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/opt/conda/bin/python",
+    "-u",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/source/paper_run_worker.py",
+    "--one",
+    "--method",
+    "uniclun",
+    "--scenario",
+    "class_il",
+    "--half",
+    "2",
+    "--seed",
+    "42",
+    "--config",
+    "{\"lr\": 0.0008060625660018368, \"alpha1\": 0.3976802230593672, \"alpha2\": 3.879349991644007, \"alpha3\": 2.5002812696084575}",
+    "--out",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_class_il_clean_eval_s42",
+    "--epochs",
+    "200",
+    "--patience",
+    "15",
+    "--tasks",
+    "10"
+  ],
+  "gpu": "GPU-22c3dfea-8545-6f51-7adf-65485eb03c54",
+  "cost_policy": "exclusive GPU; clean training timing; separate inference FLOP pass"
+}

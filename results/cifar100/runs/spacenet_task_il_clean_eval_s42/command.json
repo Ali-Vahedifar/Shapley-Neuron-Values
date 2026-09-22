@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/opt/conda/bin/python",
+    "-u",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/source/paper_run_worker.py",
+    "--one",
+    "--method",
+    "spacenet",
+    "--scenario",
+    "task_il",
+    "--half",
+    "2",
+    "--seed",
+    "42",
+    "--config",
+    "{\"lr\": 0.0014655269490071565, \"density_factor\": 0.5, \"rewire_fraction\": 0.3}",
+    "--out",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/spacenet_task_il_clean_eval_s42",
+    "--epochs",
+    "200",
+    "--patience",
+    "15",
+    "--tasks",
+    "10"
+  ],
+  "gpu": "GPU-22c3dfea-8545-6f51-7adf-65485eb03c54",
+  "cost_policy": "exclusive GPU; clean training timing; separate inference FLOP pass"
+}

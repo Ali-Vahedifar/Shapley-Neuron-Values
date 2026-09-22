@@ -1,0 +1,477 @@
+{
+  "method": "uniclun",
+  "scenario": "task_il",
+  "config_origin": "current audited space; sample seed 7",
+  "tuning": [
+    {
+      "config": {
+        "lr": 0.0004442889681244212,
+        "alpha1": 0.20030802451010635,
+        "alpha2": 2.003867243522384,
+        "alpha3": 0.13959587116837913
+      },
+      "score": 0.7668573737083642,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r0_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r0_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r0_s44/result.json"
+      ],
+      "trial_index": 0
+    },
+    {
+      "config": {
+        "lr": 0.0011796794351545566,
+        "alpha1": 0.5387382780493349,
+        "alpha2": 0.130616442051801,
+        "alpha3": 1.0348358517483776
+      },
+      "score": 0.6305286155774685,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r1_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r1_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r1_s44/result.json"
+      ],
+      "trial_index": 1
+    },
+    {
+      "config": {
+        "lr": 0.00011884784652203496,
+        "alpha1": 0.7367011831291909,
+        "alpha2": 0.1379465511965742,
+        "alpha3": 0.15185392674426984
+      },
+      "score": 0.4002705557064868,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r2_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r2_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r2_s44/result.json"
+      ],
+      "trial_index": 2
+    },
+    {
+      "config": {
+        "lr": 0.0007063799737854452,
+        "alpha1": 4.505098069088988,
+        "alpha2": 0.17684953502478842,
+        "alpha3": 0.2795618651014512
+      },
+      "score": 0.4344425551961712,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r3_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r3_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r3_s44/result.json"
+      ],
+      "trial_index": 3
+    },
+    {
+      "config": {
+        "lr": 0.0017983178074618667,
+        "alpha1": 7.859915641919161,
+        "alpha2": 1.4262836285630585,
+        "alpha3": 0.6213852632105079
+      },
+      "score": 0.39050380057123957,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r4_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r4_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r4_s44/result.json"
+      ],
+      "trial_index": 4
+    },
+    {
+      "config": {
+        "lr": 0.008964172623762685,
+        "alpha1": 0.12392683584421774,
+        "alpha2": 5.211190123160718,
+        "alpha3": 0.3795059354842255
+      },
+      "score": 0.7577288334231334,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r5_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r5_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r5_s44/result.json"
+      ],
+      "trial_index": 5
+    },
+    {
+      "config": {
+        "lr": 0.00019431671803074775,
+        "alpha1": 0.17202219151505607,
+        "alpha2": 0.4139650232121886,
+        "alpha3": 4.287979676026034
+      },
+      "score": 0.751787115956717,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r6_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r6_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r6_s44/result.json"
+      ],
+      "trial_index": 6
+    },
+    {
+      "config": {
+        "lr": 0.0002298543672795521,
+        "alpha1": 1.4561305960918243,
+        "alpha2": 1.8959502528324623,
+        "alpha3": 0.5556420250640455
+      },
+      "score": 0.49783015165266614,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r7_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r7_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r7_s44/result.json"
+      ],
+      "trial_index": 7
+    },
+    {
+      "config": {
+        "lr": 0.0012459164830033592,
+        "alpha1": 0.13352972357290546,
+        "alpha2": 0.13158377446706004,
+        "alpha3": 0.2581769260574011
+      },
+      "score": 0.787102992624397,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r8_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r8_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r8_s44/result.json"
+      ],
+      "trial_index": 8
+    },
+    {
+      "config": {
+        "lr": 0.0022950911925748475,
+        "alpha1": 0.7164478955402026,
+        "alpha2": 0.4249074451201314,
+        "alpha3": 1.4829405028289162
+      },
+      "score": 0.7683775516074342,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r9_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r9_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r9_s44/result.json"
+      ],
+      "trial_index": 9
+    },
+    {
+      "config": {
+        "lr": 0.0008060625660018368,
+        "alpha1": 0.3976802230593672,
+        "alpha2": 3.879349991644007,
+        "alpha3": 2.5002812696084575
+      },
+      "score": 0.757003434627053,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r10_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r10_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r10_s44/result.json"
+      ],
+      "trial_index": 10
+    },
+    {
+      "config": {
+        "lr": 0.0003077464284603858,
+        "alpha1": 1.4087937638394301,
+        "alpha2": 1.1230342659337318,
+        "alpha3": 5.62697507137526
+      },
+      "score": 0.6669247156407166,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r11_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r11_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r11_s44/result.json"
+      ],
+      "trial_index": 11
+    },
+    {
+      "config": {
+        "lr": 0.0028766735413721946,
+        "alpha1": 0.37659584991247447,
+        "alpha2": 9.12745488458186,
+        "alpha3": 0.17223902425235005
+      },
+      "score": 0.7263743648527888,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r12_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r12_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r12_s44/result.json"
+      ],
+      "trial_index": 12
+    },
+    {
+      "config": {
+        "lr": 0.0006858760587006585,
+        "alpha1": 3.2679985798366413,
+        "alpha2": 0.20135808364805013,
+        "alpha3": 0.9504432724492113
+      },
+      "score": 0.6215190608088014,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r13_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r13_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r13_s44/result.json"
+      ],
+      "trial_index": 13
+    },
+    {
+      "config": {
+        "lr": 0.00011978833103434701,
+        "alpha1": 2.1698599956181117,
+        "alpha2": 3.3817518199809835,
+        "alpha3": 1.3997545264100943
+      },
+      "score": 0.40223051857375675,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r14_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r14_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r14_s44/result.json"
+      ],
+      "trial_index": 14
+    },
+    {
+      "config": {
+        "lr": 0.005635800661063973,
+        "alpha1": 0.42412612604474664,
+        "alpha2": 2.458050111956498,
+        "alpha3": 1.544328741624807
+      },
+      "score": 0.7557388335710137,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r15_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r15_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r15_s44/result.json"
+      ],
+      "trial_index": 15
+    },
+    {
+      "config": {
+        "lr": 0.0014447423667549276,
+        "alpha1": 0.8173548850613211,
+        "alpha2": 4.785590802656814,
+        "alpha3": 7.751079480434485
+      },
+      "score": 0.7341051989307793,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r16_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r16_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r16_s44/result.json"
+      ],
+      "trial_index": 16
+    },
+    {
+      "config": {
+        "lr": 0.0008875578609841715,
+        "alpha1": 2.12963124988907,
+        "alpha2": 0.1322326968042732,
+        "alpha3": 2.529205063522373
+      },
+      "score": 0.6487386141770893,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r17_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r17_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r17_s44/result.json"
+      ],
+      "trial_index": 17
+    },
+    {
+      "config": {
+        "lr": 0.0019690543741194976,
+        "alpha1": 9.68705752951324,
+        "alpha2": 4.4040229473889445,
+        "alpha3": 0.3708438355121553
+      },
+      "score": 0.6489910199115034,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r18_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r18_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r18_s44/result.json"
+      ],
+      "trial_index": 18
+    },
+    {
+      "config": {
+        "lr": 0.0005909937456851275,
+        "alpha1": 2.174229739319785,
+        "alpha2": 0.11094962944977321,
+        "alpha3": 0.8382828333201585
+      },
+      "score": 0.5066974326213022,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r19_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r19_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r19_s44/result.json"
+      ],
+      "trial_index": 19
+    },
+    {
+      "config": {
+        "lr": 0.00021681871081357689,
+        "alpha1": 0.1714713586392156,
+        "alpha2": 0.13119244883270473,
+        "alpha3": 3.439267667655503
+      },
+      "score": 0.7504535760935029,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r20_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r20_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r20_s44/result.json"
+      ],
+      "trial_index": 20
+    },
+    {
+      "config": {
+        "lr": 0.0001814180288988843,
+        "alpha1": 0.31277329648625374,
+        "alpha2": 0.6052006785287868,
+        "alpha3": 5.531513138293051
+      },
+      "score": 0.7407609222464613,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r21_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r21_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r21_s44/result.json"
+      ],
+      "trial_index": 21
+    },
+    {
+      "config": {
+        "lr": 0.00014493143837777378,
+        "alpha1": 0.7913612886741306,
+        "alpha2": 1.2556824323465945,
+        "alpha3": 5.844773057051446
+      },
+      "score": 0.5858446535626328,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r22_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r22_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r22_s44/result.json"
+      ],
+      "trial_index": 22
+    },
+    {
+      "config": {
+        "lr": 0.004350705388317473,
+        "alpha1": 5.345261288914453,
+        "alpha2": 0.3604475924139745,
+        "alpha3": 0.6770068055657534
+      },
+      "score": 0.4813526816867048,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r23_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r23_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r23_s44/result.json"
+      ],
+      "trial_index": 23
+    },
+    {
+      "config": {
+        "lr": 0.000521845966062611,
+        "alpha1": 5.866588875814303,
+        "alpha2": 8.231185855616388,
+        "alpha3": 0.20037420468312847
+      },
+      "score": 0.4870319158902874,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r24_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r24_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r24_s44/result.json"
+      ],
+      "trial_index": 24
+    },
+    {
+      "config": {
+        "lr": 0.00022513108115376212,
+        "alpha1": 0.29101390033375973,
+        "alpha2": 0.29286816585404685,
+        "alpha3": 0.9330941371939036
+      },
+      "score": 0.7689575514194997,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r25_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r25_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r25_s44/result.json"
+      ],
+      "trial_index": 25
+    },
+    {
+      "config": {
+        "lr": 0.0015074642012789278,
+        "alpha1": 0.33534608350547745,
+        "alpha2": 0.10190305562141058,
+        "alpha3": 0.6884826529968275
+      },
+      "score": 0.7841478829804905,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r26_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r26_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r26_s44/result.json"
+      ],
+      "trial_index": 26
+    },
+    {
+      "config": {
+        "lr": 0.0005476551118890167,
+        "alpha1": 1.3573206218773253,
+        "alpha2": 8.057417195542707,
+        "alpha3": 2.4042925696715103
+      },
+      "score": 0.6417680431131055,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r27_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r27_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r27_s44/result.json"
+      ],
+      "trial_index": 27
+    },
+    {
+      "config": {
+        "lr": 0.0010739470419673606,
+        "alpha1": 1.7186423086208047,
+        "alpha2": 2.2511278706524314,
+        "alpha3": 0.12822886153378513
+      },
+      "score": 0.578199566887874,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r28_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r28_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r28_s44/result.json"
+      ],
+      "trial_index": 28
+    },
+    {
+      "config": {
+        "lr": 0.006296018857315468,
+        "alpha1": 3.6302704570869464,
+        "alpha2": 5.610820411971444,
+        "alpha3": 3.942268885938227
+      },
+      "score": 0.5735085437658184,
+      "results": [
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r29_s42/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r29_s43/result.json",
+        "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r29_s44/result.json"
+      ],
+      "trial_index": 29
+    }
+  ],
+  "best": {
+    "config": {
+      "lr": 0.0012459164830033592,
+      "alpha1": 0.13352972357290546,
+      "alpha2": 0.13158377446706004,
+      "alpha3": 0.2581769260574011
+    },
+    "score": 0.787102992624397,
+    "results": [
+      "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r8_s42/result.json",
+      "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r8_s43/result.json",
+      "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_ht_r8_s44/result.json"
+    ],
+    "trial_index": 8
+  },
+  "evaluation": [
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_clean_eval_s42/result.json",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_clean_eval_s43/result.json",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/uniclun_task_il_clean_eval_s44/result.json"
+  ]
+}

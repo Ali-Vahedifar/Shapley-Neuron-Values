@@ -1,0 +1,446 @@
+{
+  "method": "ewc",
+  "scenario": "class_il",
+  "config_origin": "current audited space; sample seed 7",
+  "tuning": [
+    {
+      "config": {
+        "lr": 0.0004442889681244212,
+        "ewc_lambda": 4.012330468314134,
+        "ewc_gamma": 0.9650934473039854
+      },
+      "score": 0.12826863524856771,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r0_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r0_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r0_s44/result.json"
+      ],
+      "trial_index": 0
+    },
+    {
+      "config": {
+        "lr": 0.00013959587116837914,
+        "ewc_lambda": 139.16435697265726,
+        "ewc_gamma": 0.9365688916912586
+      },
+      "score": 0.11812284093018588,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r1_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r1_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r1_s44/result.json"
+      ],
+      "trial_index": 1
+    },
+    {
+      "config": {
+        "lr": 0.00013061644205180118,
+        "ewc_lambda": 107.08852400637896,
+        "ewc_gamma": 0.9037495658441985
+      },
+      "score": 0.11904528921773892,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r2_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r2_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r2_s44/result.json"
+      ],
+      "trial_index": 2
+    },
+    {
+      "config": {
+        "lr": 0.0007367011831291912,
+        "ewc_lambda": 1.9029250987029058,
+        "ewc_gamma": 0.9090713013343865
+      },
+      "score": 0.13074331669070316,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r3_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r3_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r3_s44/result.json"
+      ],
+      "trial_index": 3
+    },
+    {
+      "config": {
+        "lr": 0.0007063799737854452,
+        "ewc_lambda": 2029.5908612109317,
+        "ewc_gamma": 0.9123801961149646
+      },
+      "score": 0.11414385665124416,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r4_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r4_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r4_s44/result.json"
+      ],
+      "trial_index": 4
+    },
+    {
+      "config": {
+        "lr": 0.00027956186510145136,
+        "ewc_lambda": 323.39469366344525,
+        "ewc_gamma": 0.9947708942457005
+      },
+      "score": 0.11870289711731326,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r5_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r5_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r5_s44/result.json"
+      ],
+      "trial_index": 5
+    },
+    {
+      "config": {
+        "lr": 0.0014262836285630588,
+        "ewc_lambda": 38.6119645335192,
+        "ewc_gamma": 0.997625510559292
+      },
+      "score": 0.12566592974934288,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r6_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r6_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r6_s44/result.json"
+      ],
+      "trial_index": 6
+    },
+    {
+      "config": {
+        "lr": 0.00012392683584421782,
+        "ewc_lambda": 2715.6502499727812,
+        "ewc_gamma": 0.9289609286331676
+      },
+      "score": 0.10093335247108688,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r7_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r7_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r7_s44/result.json"
+      ],
+      "trial_index": 7
+    },
+    {
+      "config": {
+        "lr": 0.00019431671803074775,
+        "ewc_lambda": 2.9591634373642615,
+        "ewc_gamma": 0.9308481824101934
+      },
+      "score": 0.12506601400560355,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r8_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r8_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r8_s44/result.json"
+      ],
+      "trial_index": 8
+    },
+    {
+      "config": {
+        "lr": 0.004287979676026034,
+        "ewc_lambda": 5.283303015748312,
+        "ewc_gamma": 0.9581600163662466
+      },
+      "score": 0.12941482216400937,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r9_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r9_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r9_s44/result.json"
+      ],
+      "trial_index": 9
+    },
+    {
+      "config": {
+        "lr": 0.0018959502528324618,
+        "ewc_lambda": 30.87380600172732,
+        "ewc_gamma": 0.9547744465709558
+      },
+      "score": 0.12764431520907094,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r10_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r10_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r10_s44/result.json"
+      ],
+      "trial_index": 10
+    },
+    {
+      "config": {
+        "lr": 0.00013352972357290557,
+        "ewc_lambda": 1.7314289702998118,
+        "ewc_gamma": 0.9205958712819327
+      },
+      "score": 0.1231990737913498,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r11_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r11_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r11_s44/result.json"
+      ],
+      "trial_index": 11
+    },
+    {
+      "config": {
+        "lr": 0.0022950911925748475,
+        "ewc_lambda": 51.32975870239849,
+        "ewc_gamma": 0.9314147170376792
+      },
+      "score": 0.12695203493575194,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r12_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r12_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r12_s44/result.json"
+      ],
+      "trial_index": 12
+    },
+    {
+      "config": {
+        "lr": 0.0014829405028289173,
+        "ewc_lambda": 64.97368603094655,
+        "ewc_gamma": 0.9299766996863682
+      },
+      "score": 0.1266209076165042,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r13_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r13_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r13_s44/result.json"
+      ],
+      "trial_index": 13
+    },
+    {
+      "config": {
+        "lr": 0.0038793499916440063,
+        "ewc_lambda": 625.1406427154877,
+        "ewc_gamma": 0.9244096510722153
+      },
+      "score": 0.11703314535980448,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r14_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r14_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r14_s44/result.json"
+      ],
+      "trial_index": 14
+    },
+    {
+      "config": {
+        "lr": 0.0014087937638394311,
+        "ewc_lambda": 126.12059624613151,
+        "ewc_gamma": 0.987513749557343
+      },
+      "score": 0.127267503203914,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r15_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r15_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r15_s44/result.json"
+      ],
+      "trial_index": 15
+    },
+    {
+      "config": {
+        "lr": 0.0028766735413721946,
+        "ewc_lambda": 14.182443417129893,
+        "ewc_gamma": 0.9980174847492582
+      },
+      "score": 0.12763851554134012,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r16_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r16_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r16_s44/result.json"
+      ],
+      "trial_index": 16
+    },
+    {
+      "config": {
+        "lr": 0.00017223902425235002,
+        "ewc_lambda": 47.04259678987484,
+        "ewc_gamma": 0.9757140929565249
+      },
+      "score": 0.12108117341773472,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r17_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r17_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r17_s44/result.json"
+      ],
+      "trial_index": 17
+    },
+    {
+      "config": {
+        "lr": 0.00020135808364805027,
+        "ewc_lambda": 90.33424141439653,
+        "ewc_gamma": 0.9039207257047438
+      },
+      "score": 0.12227478474846741,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r18_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r18_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r18_s44/result.json"
+      ],
+      "trial_index": 18
+    },
+    {
+      "config": {
+        "lr": 0.002169859995618112,
+        "ewc_lambda": 1143.624537194469,
+        "ewc_gamma": 0.9573025940277384
+      },
+      "score": 0.11737354809222633,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r19_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r19_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r19_s44/result.json"
+      ],
+      "trial_index": 19
+    },
+    {
+      "config": {
+        "lr": 0.005635800661063973,
+        "ewc_lambda": 17.988297079372426,
+        "ewc_gamma": 0.969529536627366
+      },
+      "score": 0.12896822405310593,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r20_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r20_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r20_s44/result.json"
+      ],
+      "trial_index": 20
+    },
+    {
+      "config": {
+        "lr": 0.0015443287416248073,
+        "ewc_lambda": 208.7280506296628,
+        "ewc_gamma": 0.9456205331301413
+      },
+      "score": 0.1209667567202911,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r21_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r21_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r21_s44/result.json"
+      ],
+      "trial_index": 21
+    },
+    {
+      "config": {
+        "lr": 0.004785590802656815,
+        "ewc_lambda": 6007.92331120125,
+        "ewc_gamma": 0.9474098337419644
+      },
+      "score": 0.11398039632480128,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r22_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r22_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r22_s44/result.json"
+      ],
+      "trial_index": 22
+    },
+    {
+      "config": {
+        "lr": 0.002129631249889069,
+        "ewc_lambda": 1.7485486104130827,
+        "ewc_gamma": 0.9701492021304424
+      },
+      "score": 0.13288256041193422,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r23_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r23_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r23_s44/result.json"
+      ],
+      "trial_index": 23
+    },
+    {
+      "config": {
+        "lr": 0.0019690543741194976,
+        "ewc_lambda": 9383.90835800991,
+        "ewc_gamma": 0.9821924786609715
+      },
+      "score": 0.11229608375618451,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r24_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r24_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r24_s44/result.json"
+      ],
+      "trial_index": 24
+    },
+    {
+      "config": {
+        "lr": 0.0003708438355121553,
+        "ewc_lambda": 34.9273607438937,
+        "ewc_gamma": 0.9668652715884188
+      },
+      "score": 0.12525123265775043,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r25_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r25_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r25_s44/result.json"
+      ],
+      "trial_index": 25
+    },
+    {
+      "config": {
+        "lr": 0.0001109496294497733,
+        "ewc_lambda": 70.27181086392723,
+        "ewc_gamma": 0.9168048378906545
+      },
+      "score": 0.11934164804933634,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r26_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r26_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r26_s44/result.json"
+      ],
+      "trial_index": 26
+    },
+    {
+      "config": {
+        "lr": 0.0001714713586392157,
+        "ewc_lambda": 1.7211458630721832,
+        "ewc_gamma": 0.976823298847252
+      },
+      "score": 0.12771712421776774,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r27_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r27_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r27_s44/result.json"
+      ],
+      "trial_index": 27
+    },
+    {
+      "config": {
+        "lr": 0.0001814180288988843,
+        "ewc_lambda": 9.782713499487794,
+        "ewc_gamma": 0.9390949703133227
+      },
+      "score": 0.1238090191567482,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r28_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r28_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r28_s44/result.json"
+      ],
+      "trial_index": 28
+    },
+    {
+      "config": {
+        "lr": 0.00553151313829305,
+        "ewc_lambda": 2.1005121830250433,
+        "ewc_gamma": 0.9449187400949332
+      },
+      "score": 0.12941029156996772,
+      "results": [
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r29_s42/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r29_s43/result.json",
+        "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r29_s44/result.json"
+      ],
+      "trial_index": 29
+    }
+  ],
+  "best": {
+    "config": {
+      "lr": 0.002129631249889069,
+      "ewc_lambda": 1.7485486104130827,
+      "ewc_gamma": 0.9701492021304424
+    },
+    "score": 0.13288256041193422,
+    "results": [
+      "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r23_s42/result.json",
+      "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r23_s43/result.json",
+      "/root/Snv_continual_learning/gtep_rerun_legacy_20260906/runs/ewc_class_il_ht_r23_s44/result.json"
+    ],
+    "trial_index": 23
+  },
+  "evaluation": [
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/ewc_class_il_clean_eval_s42/result.json",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/ewc_class_il_clean_eval_s43/result.json",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/ewc_class_il_clean_eval_s44/result.json"
+  ]
+}

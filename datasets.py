@@ -1,7 +1,8 @@
 """
 Continual-learning benchmarks.
 
-Datasets: Permuted MNIST, CIFAR-100, TinyImageNet, ImageNet-1k.
+Datasets: Permuted MNIST, CIFAR-100, CIFAR-20 (the 20 CIFAR-100 superclasses),
+TinyImageNet-200, ImageNet-1k.
 Task splits: 10, 20 or 50 tasks (ImageNet-1k is the only one evaluated at 50).
 
 Splits follow the experimental setup: for every task the samples of that task's
@@ -68,6 +69,24 @@ class _TaskSubset(Dataset):
         return img, self.label_map[int(label)]
 
 
+class CIFAR20(datasets.CIFAR100):
+    """CIFAR-100 images under their 20 superclass labels.
+
+    torchvision only exposes the 100 fine labels, so the coarse labels are read
+    back from the same pickle it just unpacked.  Images, order and the
+    train/test partition are identical to CIFAR-100; only ``targets`` differs,
+    which is what the benchmark slices tasks with.
+    """
+
+    def __init__(self, root: str, train: bool = True, download: bool = True):
+        super().__init__(root, train=train, download=download)
+        import pickle
+        name = (self.train_list if train else self.test_list)[0][0]
+        with open(os.path.join(self.root, self.base_folder, name), 'rb') as f:
+            entry = pickle.load(f, encoding='latin1')
+        self.targets = entry['coarse_labels']
+
+
 class TinyImageNet:
     """TinyImageNet-200 as a raw pool of (PIL, label)."""
 
@@ -129,7 +148,9 @@ class TinyImageNet:
 # Transforms
 # --------------------------------------------------------------------------- #
 _STATS = {
+    'cifar10':  ([0.4914, 0.4822, 0.4465], [0.2470, 0.2435, 0.2616]),
     'cifar100': ([0.5071, 0.4867, 0.4408], [0.2675, 0.2565, 0.2761]),
+    'cifar20':  ([0.5071, 0.4867, 0.4408], [0.2675, 0.2565, 0.2761]),  # same images as CIFAR-100
     'tinyimagenet': ([0.4802, 0.4481, 0.3975], [0.2770, 0.2691, 0.2821]),
     'imagenet1k': ([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
 }
@@ -141,7 +162,7 @@ def build_transforms(dataset: str, train: bool):
                                    transforms.Normalize((0.1307,), (0.3081,))])
     mean, std = _STATS[dataset]
     norm = transforms.Normalize(mean, std)
-    if dataset == 'cifar100':
+    if dataset in ('cifar10', 'cifar100', 'cifar20'):
         aug = [transforms.RandomCrop(32, padding=4), transforms.RandomHorizontalFlip()]
         base = []
     elif dataset == 'tinyimagenet':
@@ -160,11 +181,13 @@ def build_transforms(dataset: str, train: bool):
 class ContinualLearningBenchmark:
     """Sequential tasks with 70 / 10 / 20 splits."""
 
-    NUM_CLASSES = {'pmnist': 10, 'cifar100': 100, 'tinyimagenet': 200, 'imagenet1k': 1000}
+    NUM_CLASSES = {'pmnist': 10, 'cifar10': 10, 'cifar20': 20, 'cifar100': 100,
+                   'tinyimagenet': 200, 'imagenet1k': 1000}
 
     def __init__(self, dataset_name: str, num_tasks: int, data_root: str = './data',
                  seed: int = 42, scenario: str = 'class_il', num_workers: int = 4,
-                 download: bool = True):
+                 download: bool = True, gtep_half: Optional[int] = None,
+                 split_seed: int = 1234):
         self.dataset_name = dataset_name.lower()
         if self.dataset_name not in self.NUM_CLASSES:
             raise ValueError(f'unknown dataset {dataset_name!r}')
@@ -176,6 +199,8 @@ class ContinualLearningBenchmark:
         self.download = download
 
         self.num_classes = self.NUM_CLASSES[self.dataset_name]
+        self.gtep_half = gtep_half
+        self.split_seed = split_seed
         rng = np.random.RandomState(seed)
 
         if self.dataset_name == 'pmnist':
@@ -184,12 +209,25 @@ class ContinualLearningBenchmark:
                                  for t in range(num_tasks)]
             self.class_order = np.arange(10)
         else:
+            pool_classes = np.arange(self.num_classes)
+            if gtep_half in (1, 2):
+                # GTEP's high-similarity case: one dataset split into two
+                # disjoint halves, D^HT and D^E.  Membership is fixed by
+                # ``split_seed`` so half 1 and half 2 are the same class sets in
+                # every run -- otherwise the two phases would not be disjoint and
+                # the protocol would collapse back into the conventional one.
+                # ``seed`` only reorders classes into tasks, which is exactly the
+                # task ordering GTEP averages over with its S trials.
+                shuffled = np.random.RandomState(split_seed).permutation(pool_classes)
+                cut = len(shuffled) // 2
+                pool_classes = shuffled[:cut] if gtep_half == 1 else shuffled[cut:]
+                self.num_classes = len(pool_classes)
             if self.num_classes % num_tasks:
                 raise ValueError(
                     f'{self.num_classes} classes do not divide evenly into {num_tasks} tasks')
             self.classes_per_task = self.num_classes // num_tasks
             self.permutations = [None] * num_tasks
-            self.class_order = rng.permutation(self.num_classes)
+            self.class_order = pool_classes[rng.permutation(self.num_classes)]
 
         self._pool = None
         self._split_cache: Dict[int, Tuple[np.ndarray, np.ndarray, np.ndarray]] = {}
@@ -204,9 +242,17 @@ class ContinualLearningBenchmark:
             tr = datasets.MNIST(root, train=True, download=self.download)
             te = datasets.MNIST(root, train=False, download=self.download)
             pool = _ConcatPool(tr, te, tr.targets.numpy(), te.targets.numpy())
+        elif name == 'cifar10':
+            tr = datasets.CIFAR10(root, train=True, download=self.download)
+            te = datasets.CIFAR10(root, train=False, download=self.download)
+            pool = _ConcatPool(tr, te, tr.targets, te.targets)
         elif name == 'cifar100':
             tr = datasets.CIFAR100(root, train=True, download=self.download)
             te = datasets.CIFAR100(root, train=False, download=self.download)
+            pool = _ConcatPool(tr, te, tr.targets, te.targets)
+        elif name == 'cifar20':
+            tr = CIFAR20(root, train=True, download=self.download)
+            te = CIFAR20(root, train=False, download=self.download)
             pool = _ConcatPool(tr, te, tr.targets, te.targets)
         elif name == 'tinyimagenet':
             tr = TinyImageNet(root, train=True, download=self.download)
@@ -279,12 +325,14 @@ class ContinualLearningBenchmark:
                 make(val_idx, tf_eval, False),
                 make(test_idx, tf_eval, False))
 
-    def get_joint_data(self, batch_size: int = 64) -> Tuple[DataLoader, DataLoader]:
-        """All tasks at once -- the joint-training upper bound."""
+    def get_joint_data(self, batch_size: int = 64,
+                       tasks: Optional[int] = None) -> Tuple[DataLoader, DataLoader]:
+        """Selected task prefix at once -- the joint-training upper bound."""
         pool = self._get_pool()
+        tasks = self.num_tasks if tasks is None else min(tasks, self.num_tasks)
         mapping: Dict[int, int] = {}
         train_all, test_all = [], []
-        for t in range(self.num_tasks):
+        for t in range(tasks):
             tr, va, te = self._split_indices(t)
             train_all += [tr, va]
             test_all.append(te)

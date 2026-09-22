@@ -1,0 +1,14 @@
+# Data and run outputs are never committed.  The patterns are anchored, so
+# results/cifar100/runs/ -- the imported D_E artifacts -- is kept.
+/data/
+/runs/
+/reports/
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.lock
+__pycache__/
+*.pyc
+.pytest_cache/
+/third_party/

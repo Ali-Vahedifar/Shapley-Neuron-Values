@@ -1,13 +1,14 @@
-# Core
-torch>=1.12
-torchvision>=0.13
-numpy>=1.21
-scipy>=1.7          # normal quantile for the bandit (a fallback exists if absent)
+# Versions the paper's CIFAR-100 campaign ran with (Python 3.10, CUDA 12.4).
+torch==2.6.0
+torchvision==0.21.0
+numpy==2.2.6
+pillow              # datasets.py (TinyImageNet loader); installed with torchvision anyway
+psutil==5.9.0
+tqdm==4.65.0
+matplotlib
+nvidia-ml-py        # pynvml: GPU utilisation, power, exclusivity checks in the cost ledger
+pytest
 
-# Data / progress
-Pillow>=9.0
-tqdm>=4.62
-
-# Analysis and figures
-matplotlib>=3.5
-seaborn>=0.11
+# Optional: the code falls back without them.
+scipy               # SNV: exact normal quantile for the MAB confidence bound
+seaborn             # utils.py plotting style

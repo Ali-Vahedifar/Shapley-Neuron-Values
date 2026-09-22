@@ -1,0 +1,8 @@
+{
+  "method": "snv",
+  "scenario": "task_il",
+  "config_origin": "current audited space; sample seed 7",
+  "tuning": [],
+  "best": null,
+  "evaluation": []
+}

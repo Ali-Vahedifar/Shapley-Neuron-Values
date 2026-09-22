@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/opt/conda/bin/python",
+    "-u",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/source/paper_run_worker.py",
+    "--one",
+    "--method",
+    "sgd",
+    "--scenario",
+    "class_il",
+    "--half",
+    "2",
+    "--seed",
+    "42",
+    "--config",
+    "{\"lr\": 0.0014561305960918238}",
+    "--out",
+    "/root/Snv_continual_learning/gtep_paper_first_20260906/runs/sgd_class_il_clean_eval_s42",
+    "--epochs",
+    "200",
+    "--patience",
+    "15",
+    "--tasks",
+    "10"
+  ],
+  "gpu": "GPU-a01678ef-c6fd-86fb-c7df-f170272afcff",
+  "cost_policy": "exclusive GPU; clean training timing; separate inference FLOP pass"
+}

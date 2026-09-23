@@ -129,7 +129,7 @@ entry('ewc', 'task_il')['clean_eval_D_E']
 ```bibtex
 @inproceedings{snv2026icml,
   title     = {Shapley Neuron Values for Continual Learning: Which Neurons Matter Most?},
-  author    = {[Author names]},
+  author    = {Mohammad Ali Vahedifar, Abhisek Ray, Qi Zhang},
   booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},
   year      = {2026}
 }

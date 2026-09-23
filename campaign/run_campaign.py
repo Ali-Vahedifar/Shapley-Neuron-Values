@@ -74,10 +74,23 @@ def scenarios(method):
             ['task_il'] if method == 'wsn' else ['class_il', 'task_il'])
 
 
+# SNV estimates its neuron values on the network the task left behind, so a
+# draw whose learning rate cannot move that network inside the epoch budget
+# cannot produce a usable subnetwork either.  Those draws are dropped instead of
+# spending three seeds each on them; the survivors keep their original index, so
+# run directory ht_r6 is the seventh draw of the shared sample, as in the
+# campaign behind results/cifar100.
+SNV_MIN_LR = 3e-4
+
+
 def configs_for(method, scenario):
+    """[(trial index, config)] for a method, in draw order."""
     rng = random.Random(SAMPLE_SEED)
     draws = [G.sample(G.SPACE[method], rng) for _ in range(ROUNDS)]
-    return [{**d, **snv_variant(scenario)} if method == 'snv' else d for d in draws]
+    if method != 'snv':
+        return list(enumerate(draws))
+    return [(i, {**d, **snv_variant(scenario)})
+            for i, d in enumerate(draws) if d['lr'] >= SNV_MIN_LR]
 
 
 def atomic(path, data):
@@ -142,6 +155,8 @@ def main():
                    help='CIFAR-100 is the tuned benchmark; the others are wired up but untuned')
     p.add_argument('--backbone', default=None)
     p.add_argument('--poll', type=float, default=5.0)
+    p.add_argument('--plan', action='store_true',
+                   help='print the jobs this campaign would run, then exit without training')
     args = p.parse_args()
     if not args.tasks:
         args.tasks = G.task_count(args.dataset)
@@ -197,11 +212,13 @@ def main():
         return job
 
     def add_block(method, scenario):
-        configs = configs_for(method, scenario)[:args.rounds]
-        block = dict(method=method, scenario=scenario, configs=configs, winner_jobs=None,
-                     done=False, signature=None, path=out / 'blocks' / f'{method}_{scenario}.json')
+        indexed = configs_for(method, scenario)[:args.rounds]
+        block = dict(method=method, scenario=scenario, configs=dict(indexed), winner_jobs=None,
+                     done=False, signature=None, trial_indices=[i for i, _ in indexed],
+                     min_lr=SNV_MIN_LR if method == 'snv' else None,
+                     path=out / 'blocks' / f'{method}_{scenario}.json')
         block['trials'] = [[add_job(method, scenario, 1, seed, config, f'ht_r{i}') for seed in SEEDS]
-                           for i, config in enumerate(configs)]
+                           for i, config in indexed]
         blocks.append(block)
 
     def refresh():
@@ -210,7 +227,7 @@ def main():
                              score=sum(json.loads((j['directory'] / 'result.json').read_text())
                                        ['metrics']['HARMONIC'] for j in trial) / len(SEEDS),
                              results=[str(j['directory'] / 'result.json') for j in trial])
-                        for i, trial in enumerate(block['trials'])
+                        for i, trial in zip(block['trial_indices'], block['trials'])
                         if all(j['state'] == 'complete' for j in trial)]
             best = max(complete, key=lambda t: t['score']) if complete else None
             if len(complete) == len(block['trials']) and block['winner_jobs'] is None:
@@ -221,9 +238,14 @@ def main():
             block['done'] = (len(complete) == len(block['trials']) and len(evaluation) == len(SEEDS))
             signature = (len(complete), len(evaluation))
             if signature != block['signature']:
+                origin = f'search space, sample seed {SAMPLE_SEED}'
+                if block['min_lr']:
+                    origin += (f"; draws with lr < {block['min_lr']} dropped, indices kept")
                 atomic(block['path'], dict(method=block['method'], scenario=block['scenario'],
-                                           config_origin=f'search space, sample seed {SAMPLE_SEED}',
-                                           variant=SNV_VARIANT if block['method'] == 'snv' else None,
+                                           config_origin=origin, min_lr=block['min_lr'],
+                                           trials=block['trial_indices'],
+                                           variant=(snv_variant(block['scenario'])
+                                                    if block['method'] == 'snv' else None),
                                            tuning=complete, best=best, evaluation=evaluation))
                 block['signature'] = signature
 
@@ -285,6 +307,31 @@ def main():
         for scenario in scenarios(method):
             if scenario in args.scenarios:
                 add_block(method, scenario)
+    if args.plan:
+        # What the campaign would run, without touching a GPU: the worker each
+        # method goes through, its trial indices and its run directories.
+        plan = []
+        for block in blocks:
+            worker = ('snv_adaptive_run.py' if block['method'] == 'snv'
+                      else 'audited_gtep.py --one --method ' + block['method'])
+            plan.append(dict(method=block['method'], scenario=block['scenario'], worker=worker,
+                             trials=block['trial_indices'], min_lr=block['min_lr'],
+                             tuning_runs=[j['directory'].name for t in block['trials'] for j in t],
+                             clean_eval_runs=[f"{block['method']}_{block['scenario']}"
+                                              f"_clean_eval_s{seed}" for seed in SEEDS],
+                             variant=(snv_variant(block['scenario'])
+                                      if block['method'] == 'snv' else None)))
+        tuning = sum(len(b['tuning_runs']) for b in plan)
+        clean = sum(len(b['clean_eval_runs']) for b in plan)
+        atomic(out / 'plan.json', dict(dataset=args.dataset, protocol=protocol, blocks=plan,
+                                       tuning_runs=tuning, clean_eval_runs=clean))
+        for b in plan:
+            print(f"{b['method']:9s} {b['scenario']:9s} {len(b['trials']):3d} trials x "
+                  f"{len(SEEDS)} seeds -> {len(b['tuning_runs']):4d} tuning runs, "
+                  f"{len(b['clean_eval_runs'])} clean runs via {b['worker']}")
+        print(f"total {tuning} tuning runs + {clean} clean runs; plan written to {out / 'plan.json'}")
+        return
+
     # SNV runs after the baselines when both are in the same campaign, so the
     # baseline table is fixed before the proposed method is measured.
     gate_snv = any(b['method'] != 'snv' for b in blocks) and any(b['method'] == 'snv' for b in blocks)

@@ -187,7 +187,9 @@ python campaign/run_campaign.py --out runs/cifar100 --gpus 0 1 2 3
 python campaign/build_report.py --campaign runs/cifar100 --out reports/cifar100
 ```
 
-`--methods snv lwf` or `--scenarios class_il` runs a subset.
+`--methods snv lwf` or `--scenarios class_il` runs a subset, and `--plan`
+prints what the campaign would run (every method, its trial indices, its worker
+and its run directories) without training anything.
 
 ## Quick check
 

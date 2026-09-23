@@ -109,6 +109,10 @@ bash scripts/run_cifar100_snv_best.sh
 
 # the whole campaign (every method, both scenarios, tuning then evaluation)
 bash scripts/run_cifar100_campaign.sh
+
+# what that campaign would run, without training: 1,758 tuning runs and
+# 60 clean runs across the 11 methods
+python campaign/run_campaign.py --out runs/plan --gpus 0 --plan
 ```
 
 The selected hyperparameters are readable from code:

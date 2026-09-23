@@ -52,7 +52,12 @@ produced this way.
 ## Hyperparameter search
 
 1. For each method, **R = 30** configurations are drawn from its search space
-   (`SPACE` in `audited_gtep.py`) with sample seed 7.
+   (`SPACE` in `audited_gtep.py`) with sample seed 7. SNV is the one exception:
+   draws below `SNV_MIN_LR = 3e-4` are dropped, because it estimates neuron
+   values on the network the task left behind and a learning rate that cannot
+   move that network inside the epoch budget cannot yield a usable subnetwork
+   either. The survivors keep their original index, so 23 of the 30 draws are
+   searched and run directory `ht_r6` is still the seventh draw.
 2. Each configuration is trained on D_HT with seeds 42, 43 and 44.
 3. **Selection score:** `HARMONIC = 2·ACC·AvgAcc / (ACC + AvgAcc)` on the D_HT
    validation split, averaged over the three seeds. The configuration with the
@@ -99,6 +104,10 @@ consolidation for half of the per-task epoch budget. Only `lr` and the
 truncation threshold are searched.
 
 ## Provenance
+
+`python campaign/run_campaign.py --out DIR --gpus 0 --plan` prints the jobs a
+campaign would run -- per method, the worker, the trial indices and every run
+directory -- and writes them to `DIR/plan.json` without touching a GPU.
 
 `run_campaign.py` records a SHA-256 of every file that can change a result
 (`SOURCE_FILES` in `audited_gtep.py`) in `protocol.json`. It refuses to

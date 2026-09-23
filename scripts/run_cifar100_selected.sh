@@ -4,7 +4,7 @@
 # hyperparameters/cifar100_best.json -- no search, just the winners.
 #
 #   bash scripts/run_cifar100_selected.sh                    # all methods
-#   METHODS="snv mcl" SEEDS="42" bash scripts/run_cifar100_selected.sh
+#   METHODS="snv lwf" SEEDS="42" bash scripts/run_cifar100_selected.sh
 #   OUT=runs/selected GPU=2 bash scripts/run_cifar100_selected.sh
 set -eu
 cd "$(dirname "$0")/.."
@@ -14,7 +14,7 @@ export GTEP_DEVICE=${GTEP_DEVICE:-cuda:0}
 [ -n "${GPU:-}" ] && export CUDA_VISIBLE_DEVICES="$GPU"
 OUT=${OUT:-runs/cifar100_selected}
 SEEDS=${SEEDS:-42 43 44}
-METHODS=${METHODS:-snv joint sgd ewc si lwf wsn pec spacenet nispa uniclun mcl}
+METHODS=${METHODS:-snv joint sgd ewc si lwf wsn pec spacenet nispa uniclun}
 EPOCHS=${EPOCHS:-200}
 PATIENCE=${PATIENCE:-15}
 mkdir -p "$OUT"

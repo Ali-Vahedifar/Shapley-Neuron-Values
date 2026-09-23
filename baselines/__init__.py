@@ -2,17 +2,14 @@
 Method registry.
 
 Every entry exposes the same three calls -- ``train_task``, ``evaluate`` and
-``evaluate_all_tasks`` -- so ``train.py`` and ``audited_gtep.py`` drive MCL, SNV
-and each baseline through one code path.
+``evaluate_all_tasks`` -- so ``train.py`` and ``audited_gtep.py`` drive SNV and
+each baseline through one code path.
 
     bounds        sgd (lower), joint (upper, see train.py --method joint)
     regularise    ewc, si, lwf
     sparse/arch   wsn (Task-IL only), spacenet, nispa, pec (Class-IL only)
     unlearning    uniclun  (continual learning + machine unlearning)
-    ours          mcl, snv (SNV-A; see SNV/snv_adaptive.py and snv_adaptive_run.py)
-
-``mcl_uniform`` and ``mcl_g`` are the ablation arms of MCL, ``mcl3`` is the
-legacy spelling of ``mcl`` used by the CIFAR-100 run directories.
+    ours          snv (SNV-A; see SNV/snv_adaptive.py and snv_adaptive_run.py)
 """
 
 from typing import Dict
@@ -24,22 +21,16 @@ from method_loader import load as _load_method
 UniCLUN = _load_method('baselines/UniCLUN', 'uniclun').UniCLUN
 from baselines.regularization import EWC, SI, LwF, SGDBaseline
 from baselines.sparse import NISPA, PEC, WSN, SpaceNet, build_nispa_model
-_mcl_mod = _load_method('baselines/MCL', 'mcl')
-MCL, MCLBase, MCLGraded = _mcl_mod.MCL, _mcl_mod.MCLBase, _mcl_mod.MCLGraded
-
 BUFFER_FREE = ['snv', 'sgd', 'ewc', 'si', 'lwf', 'pec', 'wsn', 'spacenet',
-               'nispa', 'mcl', 'mcl_uniform', 'mcl_g', 'mcl3']
+               'nispa']
 MEMORY_BASED = ['uniclun']
 ALL_METHODS = BUFFER_FREE + MEMORY_BASED + ['joint']
 
 _BASELINES = {
     'sgd': SGDBaseline, 'ewc': EWC, 'si': SI, 'lwf': LwF,
     'wsn': WSN, 'spacenet': SpaceNet, 'nispa': NISPA, 'pec': PEC,
-    'mcl': MCL, 'mcl3': MCL, 'mcl_uniform': MCLBase, 'mcl_g': MCLGraded,
     'uniclun': UniCLUN,
 }
-
-_MCL_FAMILY = ('mcl', 'mcl3', 'mcl_uniform', 'mcl_g')
 
 # Methods that need the task identity at test time and so have no CIL result.
 TIL_ONLY = {'wsn'}
@@ -131,15 +122,6 @@ def build_method(name: str, model, device: torch.device, scenario: str,
         kw['temperature'] = kwargs.get('temperature', 2.0)
         kw['lwf_lambda'] = kwargs.get('lwf_lambda', 1.0)
 
-    if name in _MCL_FAMILY:
-        # Two terms, one scalar each (sec:objective).  lambda_S rides the shared
-        # --lwf_lambda flag and tau the shared --temperature flag, so a sweep
-        # means the same thing for MCL as for LwF.  No EWC term (sec:no-ewc).
-        kw['sdft_lambda'] = kwargs.get('lwf_lambda', 1.0)
-        kw['temperature'] = kwargs.get('temperature', 2.0)
-        kw['cosine_scale'] = kwargs.get('mcl_scale', 16.0)
-        if kwargs.get('mcl_density_alpha') is not None:
-            kw['density_alpha'] = kwargs['mcl_density_alpha']
 
     kw.setdefault('weight_decay', kwargs.get('weight_decay', 0.0))
     kw.setdefault('freeze_old_heads', kwargs.get('freeze_old_heads', False))

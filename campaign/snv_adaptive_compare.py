@@ -45,7 +45,7 @@ if __name__ == '__main__':
         RUNS = Path(sys.argv[2])
         del sys.argv[1:3]
     print('reference (best trial, seed 42, class-IL ACC):')
-    for method in ('joint', 'uniclun', 'mcl', 'lwf', 'sgd', 'snv'):
+    for method in ('joint', 'uniclun', 'lwf', 'sgd', 'snv'):
         b = best_reference(method)
         if b:
             trial = re.search(r'_ht_(r\d+)_', b[0])[1]     # no backslash inside an f-string (py3.10)

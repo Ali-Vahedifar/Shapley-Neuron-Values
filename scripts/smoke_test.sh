@@ -35,8 +35,7 @@ run pec      class_il '{"lr":0.001}'
 run spacenet class_il '{"lr":0.001,"density_factor":1.0,"rewire_fraction":0.2}'
 run nispa    class_il '{"lr":0.001,"nispa_prune_perc":90,"nispa_recovery_perc":2.5}'
 run uniclun  class_il '{"lr":0.001,"alpha1":1.0,"alpha2":1.0,"alpha3":1.0}'
-run mcl      class_il '{"lr":0.001,"lwf_lambda":1.0,"temperature":2.0,"mcl_density_alpha":0.25}'
-run mcl      task_il  '{"lr":0.001,"lwf_lambda":1.0,"temperature":2.0,"mcl_density_alpha":0.25}'
+run lwf      task_il  '{"lr":0.001,"lwf_lambda":1.0,"temperature":2.0}'
 # SNV-A: the Shapley valuation is the expensive step.  On CPU with ResNet-18
 # it takes well over 30 minutes even at this size, so it runs only on a GPU;
 # tests/test_snv.py::TestSNVAdaptive covers SNV-A on CPU in seconds.

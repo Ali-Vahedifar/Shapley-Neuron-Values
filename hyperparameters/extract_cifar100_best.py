@@ -23,10 +23,10 @@ from datetime import date
 from pathlib import Path
 
 # Block name -> the method name this package uses.  'snv_adaptive' is SNV-A,
-# the version reported for SNV; 'mcl3' is the legacy spelling of 'mcl'.
-RENAME = {'snv_adaptive': 'snv', 'snv': 'snv_dense', 'mcl3': 'mcl'}
+# the version reported for SNV.
+RENAME = {'snv_adaptive': 'snv', 'snv': 'snv_dense'}
 # Methods outside this package's scope (no implementation shipped here).
-SKIP = {'lwu', 'dcnet', 'derpp', 'dytox', 'icarl', 'nfl', 'nfl+'}
+SKIP = {'lwu', 'dcnet', 'derpp', 'dytox', 'icarl', 'nfl', 'nfl+', 'mcl', 'mcl3'}
 METRICS = ('ACC', 'AvgAcc', 'BWT', 'FWT', 'PS', 'P', 'S', 'AF', 'HARMONIC')
 
 

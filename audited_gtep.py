@@ -89,17 +89,13 @@ SPACE={
  'wsn':{'lr':LR,'wsn_density':('choice',[.1,.3,.5,.7])},
  'nispa':{'lr':LR,'nispa_prune_perc':('u',70,95),'nispa_recovery_perc':('u',1,5)},
  'spacenet':{'lr':LR,'spacenet_s_init':('u',.1,.3),'spacenet_rewire_fraction':('u',.05,.4)},
- 'mcl':{'lr':LR,'lwf_lambda':('logu',.1,10),'temperature':('choice',[1.,2.,4.]),
-     'mcl_density_alpha':('choice',[.25,.5,1.])},
 }
 
-# The paper's methods, in the order the campaign dispatches them. 'mcl3' is the
-# legacy spelling of 'mcl' kept so CIFAR-100 run directories stay readable.
-ORDER=['sgd','lwf','si','ewc','pec','joint','mcl','wsn','spacenet','nispa','uniclun','snv']
+# The methods, in the order the campaign dispatches them.
+ORDER=['sgd','lwf','si','ewc','pec','joint','wsn','spacenet','nispa','uniclun','snv']
 SPACE['joint']={'lr':LR}
 SPACE['spacenet']={'lr':LR,'density_factor':('choice',[.5,1.,1.5]),'rewire_fraction':('choice',[.1,.2,.3])}
 SPACE={m:SPACE[m] for m in ORDER}
-SPACE['mcl3']=SPACE['mcl']
 # Two protocols. 'paper' follows the published GTEP training settings (SGD and
 # method-specific schedules). 'legacy' reproduces the completed gtep_cifar100
 # campaign -- Adam, batch 64, lr-only search -- so reruns of the methods whose
@@ -135,7 +131,7 @@ SOURCE_FILES=('cl_base.py','models.py','datasets.py','metrics.py',
     'baselines/PEC/pec.py','baselines/SpaceNet/spacenet.py',
     'baselines/SpaceNet/audited_spacenet.py','baselines/UniCLUN/uniclun.py',
     'baselines/WSN/wsn.py','baselines/joint_audited.py','baselines/Joint/joint.py',
-    'baselines/NISPA/nispa.py','baselines/MCL/mcl.py','baselines/EWC/ewc.py',
+    'baselines/NISPA/nispa.py','baselines/EWC/ewc.py',
     'baselines/SI/si.py','baselines/LwF/lwf.py','baselines/SGD/sgd.py',
     'wsn_helpers.py','method_loader.py','utils.py')
 UPSTREAM=('third_party/pec','third_party/uniclun','third_party/spacenet','third_party/gtep')

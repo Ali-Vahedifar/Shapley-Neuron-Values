@@ -43,7 +43,6 @@ baselines/                  every method SNV is compared against
   EWC/ SI/ LwF/             regularisation
   WSN/ PEC/ SpaceNet/ NISPA/    sparse / architecture
   UniCLUN/                  continual learning + machine unlearning
-  MCL/                      Matryoshka Continual Learning
 
 audited_gtep.py             the GTEP protocol: disjoint halves, search spaces,
                             one run, the cost ledger hooks, the run queue
@@ -119,8 +118,6 @@ from hyperparameters import best_config, entry
 best_config('snv', 'class_il')        # SNV-A's Class-IL winner
 entry('ewc', 'task_il')['clean_eval_D_E']
 ```
-
-
 
 ---
 

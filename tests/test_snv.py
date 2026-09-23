@@ -662,26 +662,6 @@ class TestMethods(unittest.TestCase):
                 self.assertGreaterEqual(acc, 0.0)
                 self.assertLessEqual(acc, 1.0)
 
-    def test_mcl_family_trains_two_tasks(self):
-        """MCL's nesting widths are d/16 .. d, so the toy backbone needs d >= 16."""
-        from baselines import build_method
-        for name in ('mcl', 'mcl_uniform', 'mcl_g', 'mcl3'):
-            for scenario in ('task_il', 'class_il'):
-                with self.subTest(method=name, scenario=scenario):
-                    model = tiny_model(widths=(32, 32), classes_per_task=2, num_tasks=2,
-                                       scenario=scenario)
-                    method = build_method(name, model, DEVICE, scenario, 1e-3)
-                    # Class-IL batches carry global labels (task t owns classes 2t, 2t+1).
-                    loader = ((lambda t, n=32, seed=0: TestWSNCorrections.cil_loader(t, n, seed))
-                              if scenario == 'class_il' else
-                              (lambda t, n=32, seed=0: fake_loader(n=n, classes=2, batch=8, seed=seed)))
-                    for task in range(2):
-                        method.train_task(task, loader(task, seed=1 + task), loader(task, n=16, seed=5),
-                                          num_epochs=1, patience=1, verbose=False)
-                    acc = method.evaluate(loader(1, n=16, seed=5), 1)
-                    self.assertGreaterEqual(acc, 0.0)
-                    self.assertLessEqual(acc, 1.0)
-
     def test_snv_trains_a_task(self):
         model = tiny_model(widths=(4, 4), classes_per_task=2, num_tasks=2)
         learner = SNVContinualLearner(model, DEVICE, sparsity_ratio=0.5, scenario='task_il',

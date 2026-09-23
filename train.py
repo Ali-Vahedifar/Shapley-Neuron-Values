@@ -118,10 +118,6 @@ def parse_args():
                    help='SpaceNet fraction of active connections dropped and grown per epoch')
     p.add_argument('--wsn_density', type=float, default=0.5,
                    help='WSN per-layer alive fraction (official default: 0.5)')
-    p.add_argument('--mcl_density_alpha', type=float, default=None,
-                   help='MCL density-readout blend weight (0 = pure cosine, 1 = pure NCM)')
-    p.add_argument('--mcl_scale', type=float, default=16.0,
-                   help='MCL cosine-head scale s (Class-IL only)')
     p.add_argument('--nispa_lambda_reg', type=float, default=1.0)
     p.add_argument('--spacenet_lambda_sp', type=float, default=1.0)
     p.add_argument('--pec_lambda', type=float, default=1.0)
@@ -217,7 +213,6 @@ def build(args, benchmark, device):
         nispa_phase_epochs=args.nispa_phase_epochs,
         nispa_max_phases=args.nispa_max_phases,
         wsn_density=args.wsn_density,
-        mcl_scale=args.mcl_scale, mcl_density_alpha=args.mcl_density_alpha,
         nispa_lambda_reg=args.nispa_lambda_reg,
         spacenet_lambda_sp=args.spacenet_lambda_sp, pec_lambda=args.pec_lambda,
         weight_decay=args.weight_decay)

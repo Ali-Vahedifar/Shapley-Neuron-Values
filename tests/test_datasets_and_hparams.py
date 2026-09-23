@@ -117,7 +117,6 @@ class TestHyperparameters(unittest.TestCase):
                                   ('ewc', ('class_il', 'task_il')),
                                   ('si', ('class_il', 'task_il')),
                                   ('lwf', ('class_il', 'task_il')),
-                                  ('mcl', ('class_il', 'task_il')),
                                   ('nispa', ('class_il', 'task_il')),
                                   ('spacenet', ('class_il', 'task_il')),
                                   ('uniclun', ('class_il', 'task_il')),

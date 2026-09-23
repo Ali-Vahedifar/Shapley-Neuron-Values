@@ -23,7 +23,7 @@ HERE = Path(__file__).resolve().parent
 # Block/run spelling -> the name this package uses.  Both SNV blocks exist and
 # must not collide: 'snv_adaptive' is the reported SNV, and the dense SNV that
 # preceded it keeps a name of its own.
-RENAME = {'snv_adaptive': 'snv', 'snv': 'snv_dense', 'mcl3': 'mcl'}
+RENAME = {'snv_adaptive': 'snv', 'snv': 'snv_dense'}
 METRICS = ('ACC', 'AvgAcc', 'BWT', 'FWT', 'PS', 'P', 'S', 'AF', 'HARMONIC')
 COSTS = ('training_gpu_hours', 'train_minutes_per_task_mean', 'gpu_peak_allocated_bytes',
          'gpu_peak_device_used_bytes', 'energy_joules_device_counter',

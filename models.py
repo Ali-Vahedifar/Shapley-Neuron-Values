@@ -85,7 +85,7 @@ class Bottleneck(nn.Module):
     """ResNet-50's 1x1 -> 3x3 -> 1x1 block, expansion 4.
 
     Only conv3/bn3 (and the downsample) carry the block's *output* channel
-    index, so anything that treats a channel index as a feature index -- MCL's
+    index, so anything that treats a channel index as a feature index -- a
     nesting scale, SNV's neuron mask -- must key on those, not on conv2 the way
     it does for BasicBlock.
     """

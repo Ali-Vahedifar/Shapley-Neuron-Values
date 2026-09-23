@@ -20,7 +20,6 @@ The runs these numbers come from: `results/cifar100/`.
 | snv | 0.3618 ± 0.0206 | -0.1862 | 0.4980 | `adaptive=True, adaptive_coverage=0.9, adaptive_rule=coverage, bn_recal=True, bn_recal_mode=batch, frozen_norm_eval=True, lr=0.00129816, rot_aux=1, routing=rot_energy_z, task_local=True, truncation=0.05` |
 | pec | 0.3284 ± 0.0125 | -0.1270 | 0.3842 | `lr=0.000139596` |
 | uniclun | 0.3275 ± 0.0404 | -0.5884 | 0.4509 | `alpha1=0.39768, alpha2=3.87935, alpha3=2.50028, lr=0.000806063` |
-| mcl | 0.2722 ± 0.0255 | -0.4119 | 0.4136 | `lr=0.000689093, lwf_lambda=1.20607, temperature=3` |
 | lwf | 0.1006 ± 0.0179 | -0.8002 | 0.1387 | `lr=0.00011095, lwf_lambda=0.838283, temperature=2` |
 | sgd | 0.0872 ± 0.0070 | -0.8585 | 0.1351 | `lr=0.00145613` |
 | si | 0.0856 ± 0.0049 | -0.8510 | 0.1300 | `lr=0.000444289, si_c=0.0283496, si_xi=0.00200387` |
@@ -37,7 +36,6 @@ The runs these numbers come from: `results/cifar100/`.
 | wsn | 0.8470 ± 0.0184 | 0.0000 | 0.8951 | `lr=0.00131982, wsn_density=0.3` |
 | snv | 0.8175 ± 0.0157 | 0.0000 | 0.8747 | `adaptive=True, adaptive_coverage=0.9, adaptive_rule=coverage, bn_recal=True, bn_recal_mode=batch, frozen_norm_eval=True, lr=0.00129816, rot_aux=0, routing=maxprob, task_local=True, truncation=0.05` |
 | nispa | 0.8002 ± 0.0155 | 0.0000 | 0.8393 | `lr=0.00189595, nispa_prune_perc=79.3099, nispa_recovery_perc=3.19098` |
-| mcl | 0.7829 ± 0.0570 | -0.0765 | 0.8352 | `lr=0.000689093, lwf_lambda=1.20607, temperature=3` |
 | lwf | 0.7781 ± 0.0249 | -0.0796 | 0.8387 | `lr=0.00172989, lwf_lambda=0.983624, temperature=4` |
 | ewc | 0.7088 ± 0.0265 | -0.0579 | 0.7680 | `ewc_gamma=0.91238, ewc_lambda=2029.59, lr=0.00070638` |
 | uniclun | 0.6946 ± 0.0270 | -0.2136 | 0.7871 | `alpha1=0.13353, alpha2=0.131584, alpha3=0.258177, lr=0.00124592` |

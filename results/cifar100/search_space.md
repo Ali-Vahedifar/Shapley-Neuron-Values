@@ -15,10 +15,6 @@ D_HT with seeds 42/43/44. The winner is the highest mean HARMONIC.
 | lwf | lr | `('logu', 0.0001, 0.01)` |
 | lwf | lwf_lambda | `('logu', 0.1, 10)` |
 | lwf | temperature | `('choice', [1.0, 2.0, 3.0, 4.0])` |
-| mcl | lr | `('logu', 0.0001, 0.01)` |
-| mcl | lwf_lambda | `('logu', 0.1, 10)` |
-| mcl | temperature | `('choice', [1.0, 2.0, 4.0])` |
-| mcl | mcl_density_alpha | `('choice', [0.25, 0.5, 1.0])` |
 | nispa | lr | `('logu', 0.0001, 0.01)` |
 | nispa | nispa_prune_perc | `('u', 70, 95)` |
 | nispa | nispa_recovery_perc | `('u', 1, 5)` |
@@ -51,8 +47,6 @@ D_HT with seeds 42/43/44. The winner is the highest mean HARMONIC.
 | joint | task_il | 30 | 0.9084 | 0.8489 |
 | lwf | class_il | 30 | 0.1387 | 0.1264 |
 | lwf | task_il | 30 | 0.8387 | 0.6954 |
-| mcl | class_il | 30 | 0.4136 | 0.2312 |
-| mcl | task_il | 30 | 0.8352 | 0.6191 |
 | nispa | class_il | 30 | 0.1223 | 0.0827 |
 | nispa | task_il | 30 | 0.8393 | 0.6447 |
 | pec | class_il | 30 | 0.3842 | 0.3367 |

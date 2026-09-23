@@ -25,10 +25,10 @@ import sys
 import zipfile
 from xml.sax.saxutils import escape
 
-ORDER = ['joint','sgd','ewc','si','lwf','wsn','pec','spacenet','nispa','uniclun','mcl','snv']
+ORDER = ['joint','sgd','ewc','si','lwf','wsn','pec','spacenet','nispa','uniclun','snv']
 LABEL = {'joint':'Joint','sgd':'SGD','ewc':'EWC','si':'SI','lwf':'LwF','wsn':'WSN',
          'pec':'PEC','spacenet':'SpaceNet','nispa':'NISPA','uniclun':'UniCLUN*',
-         'mcl':'MCL','mcl3':'MCL','snv':'SNV'}
+         'snv':'SNV'}
 METRICS = ['ACC','AvgAcc','BWT','FWT','PS','P','S','AF','HARMONIC']
 
 
@@ -288,7 +288,7 @@ def main():
         ('Scope', f"{args.label}: {len({b['method'] for b in blocks})} methods, {len(blocks)} "
                   f"method/scenario blocks, {len(trials)} configurations, {len(trial_seeds)} tuning runs, "
                   f"{len(results)} final winner runs. PEC is Class-IL only; WSN is Task-IL only. "
-                  "SNV means SNV-A (SNV/snv_adaptive.py); MCL is the density-readout arm."),
+                  "SNV means SNV-A (SNV/snv_adaptive.py)."),
         ('Dataset', f"{dataset_label}, disjoint {protocol.get('classes_per_half', '?')}-class halves, "
                     f"{protocol.get('tasks', '?')} tasks x {protocol.get('classes_per_task', '?')} classes "
                     f"per half. Fixed half membership split_seed={protocol.get('split_seed', 1234)}; "

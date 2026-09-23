@@ -30,7 +30,7 @@ def tensors_in(value, visited=None):
         for v in value:
             yield from tensors_in(v, visited)
     elif hasattr(value, '__dict__') and value.__class__.__module__.startswith(
-            ('cl_base', 'SNV.', 'PEC.', 'UniCLUN.', 'SpaceNet.', 'NISPA.', 'MCL.')):
+            ('cl_base', 'SNV.', 'PEC.', 'UniCLUN.', 'SpaceNet.', 'NISPA.')):
         yield from tensors_in(vars(value), visited)
 
 

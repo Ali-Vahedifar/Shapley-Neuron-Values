@@ -17,16 +17,6 @@ provides `train_task`, `evaluate` and `predict`. All methods are built by
 | `nispa` | NISPA (Gurbuz & Dovrolis, 2022) | CIL, TIL | `nispa_prune_perc`, `nispa_recovery_perc` | Native conv architecture (the fc1 fan-in follows the input size, so it also runs the 64px and 224px benchmarks). It uses its own phase/recovery stopping rule. |
 | `uniclun` | UniCLUN† (Chatterjee et al., 2024) | CIL, TIL | `alpha1`, `alpha2`, `alpha3` | Re-implemented from the paper, because the upstream code omits the model module. The buffer holds 1,000 examples. |
 | `snv` | SNV (SNV-A, `SNV/snv_adaptive.py`) | CIL, TIL | `truncation` | Run through `snv_adaptive_run.py` |
-| `mcl` | **MCL** (ours) | CIL, TIL | `lwf_lambda` (λ_S), `temperature` (τ), `mcl_density_alpha` | A Matryoshka head with doll-weighted self-distillation, a density readout and nested weight aligning |
-
-## MCL variants (`baselines/MCL/mcl.py`)
-
-* `mcl` is the reported method: β = 0, density readout blended with α
-  (default 0.25) and nested weight aligning. `mcl3` is the legacy name for it,
-  kept so older run directories still resolve.
-* `mcl_uniform` is an ablation with the plain two-term objective and neither
-  the density readout nor weight aligning.
-* `mcl_g` is an ablation with β = 1, which holds the coarse dolls 16× harder.
 
 ## SNV
 

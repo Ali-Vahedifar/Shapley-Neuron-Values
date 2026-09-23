@@ -31,7 +31,6 @@ baselines/
   EWC/ SI/ LwF/          regularisation
   WSN/ PEC/ SpaceNet/ NISPA/   sparse / architecture
   UniCLUN/               continual learning + machine unlearning
-  MCL/                   Matryoshka Continual Learning
 
 audited_gtep.py          GTEP: halves, search spaces, one run, the run queue
 campaign/
@@ -78,7 +77,6 @@ tests/                   SNV, SNV-A, baselines, metrics, datasets, hyperparamete
 | Regularisation | EWC, SI, LwF |
 | Sparse / architecture | WSN (Task-IL only), PEC (Class-IL only), SpaceNet, NISPA |
 | CL + unlearning | UniCLUN |
-| Matryoshka | MCL (+ the `mcl_uniform` and `mcl_g` ablation arms) |
 
 WSN needs the task identity at test time, so it is evaluated only in Task-IL;
 PEC is defined only for Class-IL.  Implementation notes per baseline are in
@@ -128,8 +126,7 @@ Class-IL ACC on the clean half, mean ± sd over seeds 42/43/44
 | **snv (SNV-A)** | **0.3618 ± 0.0206** | | si | 0.0856 ± 0.0049 |
 | pec | 0.3284 ± 0.0125 | | ewc | 0.0839 ± 0.0066 |
 | uniclun | 0.3275 ± 0.0404 | | nispa | 0.0824 ± 0.0054 |
-| mcl | 0.2722 ± 0.0255 | | spacenet | 0.0677 ± 0.0043 |
-| lwf | 0.1006 ± 0.0179 | | | |
+| lwf | 0.1006 ± 0.0179 | | spacenet | 0.0677 ± 0.0043 |
 
 SNV-A is the best version of SNV and the best method here apart from the joint
 upper bound; the dense SNV it replaced never left chance in Class-IL. In Task-IL
@@ -190,7 +187,7 @@ python campaign/run_campaign.py --out runs/cifar100 --gpus 0 1 2 3
 python campaign/build_report.py --campaign runs/cifar100 --out reports/cifar100
 ```
 
-`--methods snv mcl` or `--scenarios class_il` runs a subset.
+`--methods snv lwf` or `--scenarios class_il` runs a subset.
 
 ## Quick check
 

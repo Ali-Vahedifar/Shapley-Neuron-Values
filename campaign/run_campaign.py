@@ -24,7 +24,7 @@ identity (method, scenario, half, seed, config, 10 tasks, 200-epoch policy) is
 reused, so re-running the command after an interruption continues the campaign.
 
   python campaign/run_campaign.py --out runs/cifar100 --gpus 0 1 2 3
-  python campaign/run_campaign.py --out runs/cifar100 --gpus 0 --methods mcl snv
+  python campaign/run_campaign.py --out runs/cifar100 --gpus 0 --methods snv lwf
 """
 import argparse
 import csv
@@ -43,7 +43,7 @@ os.environ.setdefault('GTEP_PROTOCOL', 'legacy')
 import audited_gtep as G                                            # noqa: E402
 
 METHODS = ['sgd', 'joint', 'ewc', 'si', 'lwf', 'wsn', 'pec', 'spacenet',
-           'nispa', 'uniclun', 'mcl', 'snv']
+           'nispa', 'uniclun', 'snv']
 SEEDS = (42, 43, 44)
 ROUNDS = 30
 EPOCHS = 200

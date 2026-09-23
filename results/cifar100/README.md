@@ -48,9 +48,8 @@ Reproduce it with `bash scripts/run_cifar100_snv_best.sh`.
 ## Names
 
 The campaign directory names are kept as they were written, so a `command.json`
-still matches its run.  Two of them differ from the names this package uses:
-`snv_adaptive` is **snv** (SNV-A), and `mcl3` is **mcl**.  The tables above use
-the package names.
+still matches its run.  One of them differs from the name this package uses:
+`snv_adaptive` is **snv** (SNV-A).  The tables above use the package names.
 
 ## What is not here
 
